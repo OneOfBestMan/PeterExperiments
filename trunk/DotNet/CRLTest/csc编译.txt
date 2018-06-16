@@ -1,0 +1,65 @@
+﻿
+C:\Windows\Microsoft.NET\Framework\v4.0.30319>cd /d C:\Windows\Microsoft.NET\Fra
+mework64\v2.0.50727
+
+C:\Windows\Microsoft.NET\Framework64\v2.0.50727>csc.exe /out:Program.exe /t:exe
+E:\Skills\DotNet\C#\Projects\Peter.Experiment\CRLTest\Program.cs
+Microsoft (R) Visual C# 2005 编译器 版本 8.00.50727.8007
+用于 Microsoft (R) Windows (R) 2005 Framework 版本 2.0.50727
+版权所有(C) Microsoft Corporation 2001-2005。保留所有权利。
+
+error CS1619:
+        无法创建临时文件“c:\Windows\Microsoft.NET\Framework64\v2.0.50727\CSC21E
+        B.tmp”-- 拒绝访问。
+
+C:\Windows\Microsoft.NET\Framework64\v2.0.50727>csc.exe /out:E:\Skills\DotNet\C#
+\Projects\Peter.Experiment\CRLTest\Program.exe /t:exe E:\Skills\DotNet\C#\Projec
+ts\Peter.Experiment\CRLTest\Program.cs
+Microsoft (R) Visual C# 2005 编译器 版本 8.00.50727.8007
+用于 Microsoft (R) Windows (R) 2005 Framework 版本 2.0.50727
+版权所有(C) Microsoft Corporation 2001-2005。保留所有权利。
+
+
+C:\Windows\Microsoft.NET\Framework64\v2.0.50727>csc.exe /out:E:\Skills\DotNet\C#
+\Projects\Peter.Experiment\CRLTest\Program.exe /t:exe E:\Skills\DotNet\C#\Projec
+ts\Peter.Experiment\CRLTest\Program.cs
+Microsoft (R) Visual C# 2005 编译器 版本 8.00.50727.8007
+用于 Microsoft (R) Windows (R) 2005 Framework 版本 2.0.50727
+版权所有(C) Microsoft Corporation 2001-2005。保留所有权利。
+
+
+C:\Windows\Microsoft.NET\Framework64\v2.0.50727>cd /d C:\Windows\Microsoft.NET\F
+ramework64\v4.0.30319
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319>csc.exe /out:E:\Skills\DotNet\C#
+\Projects\Peter.Experiment\CRLTest\rut.netmodule /t:module E:\Skills\DotNet\C#\P
+rojects\Peter.Experiment\CRLTest\Rut.cs
+Microsoft (R) Visual C# Compiler version 4.6.1055.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+This compiler is provided as part of the Microsoft (R) .NET Framework, but only
+supports language versions up to C# 5, which is no longer the latest version. Fo
+r compilers that support newer versions of the C# programming language, see http
+://go.microsoft.com/fwlink/?LinkID=533240
+
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319>csc.exe /out:E:\Skills\DotNet\C#
+\Projects\Peter.Experiment\CRLTest\multifilelibrary.dll /t:library /addmodule:E:
+\Skills\DotNet\C#\Projects\Peter.Experiment\CRLTest\rut.netmodule E:\Skills\DotN
+et\C#\Projects\Peter.Experiment\CRLTest\Fut.cs
+Microsoft (R) Visual C# Compiler version 4.6.1055.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+This compiler is provided as part of the Microsoft (R) .NET Framework, but only
+supports language versions up to C# 5, which is no longer the latest version. Fo
+r compilers that support newer versions of the C# programming language, see http
+://go.microsoft.com/fwlink/?LinkID=533240
+
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319>
+
+
+
+csc.exe /out:路径  /t:exe 编译文件路径
