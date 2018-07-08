@@ -1,0 +1,27 @@
+﻿1: 创建一个类
+ Deriving from ViewComponent
+ Decorating a class with the [ViewComponent] attribute, 
+    or deriving from a class with the [ViewComponent] attribute
+ Creating a class where the name ends with the suffix ViewComponent
+
+ 2：View search path
+   Views/<controller_name>/Components/<view_component_name>/<view_name>
+   Views/Shared/Components/<view_component_name>/<view_name>
+
+3：Invoking a view component
+  @Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)
+
+  Invoking a view component as a Tag Helper
+  <vc:[view-component-name]
+  parameter1="parameter1 value"
+  parameter2="parameter2 value">
+</vc:[view-component-name]>
+  Note: In order to use a View Component as a Tag Helper, 
+  you must register the assembly containing the View Component 
+  using the @addTagHelper directive.
+  For example, if your View Component is in an assembly called "MyWebApp", 
+  add the following directive to the _ViewImports.cshtml file:
+
+  @addTagHelper *, MyWebApp
+
+  4：
