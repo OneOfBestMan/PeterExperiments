@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFirst", "NetCore\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionsPattern", "NetCore\OptionsPattern\OptionsPattern.csproj", "{3F9A9396-C1BE-4C76-A97E-F3E821B6C722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewComponents", "NetCore\ViewComponents\ViewComponents.csproj", "{11FD484A-155A-49D1-B0F4-2EF62E6C2050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewComponents", "NetCore\ViewComponents\ViewComponents.csproj", "{11FD484A-155A-49D1-B0F4-2EF62E6C2050}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreHostPort", "NetCore\NetCoreHostPort\NetCoreHostPort.csproj", "{8A232682-0833-4094-BDE8-BB7C463DA565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -197,6 +199,14 @@ Global
 		{11FD484A-155A-49D1-B0F4-2EF62E6C2050}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11FD484A-155A-49D1-B0F4-2EF62E6C2050}.Release|x86.ActiveCfg = Release|Any CPU
 		{11FD484A-155A-49D1-B0F4-2EF62E6C2050}.Release|x86.Build.0 = Release|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Debug|x86.Build.0 = Debug|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A232682-0833-4094-BDE8-BB7C463DA565}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,6 +231,7 @@ Global
 		{18F55F3F-0FB2-43D2-8F07-30E4705DA5EA} = {625DF106-4805-4464-857A-FB1ABE41F1ED}
 		{3F9A9396-C1BE-4C76-A97E-F3E821B6C722} = {625DF106-4805-4464-857A-FB1ABE41F1ED}
 		{11FD484A-155A-49D1-B0F4-2EF62E6C2050} = {625DF106-4805-4464-857A-FB1ABE41F1ED}
+		{8A232682-0833-4094-BDE8-BB7C463DA565} = {625DF106-4805-4464-857A-FB1ABE41F1ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99DA3533-8288-452D-8587-27F0BBC96682}
