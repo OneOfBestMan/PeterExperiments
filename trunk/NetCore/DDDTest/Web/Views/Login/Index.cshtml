@@ -1,0 +1,116 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/login.css" media="all">
+    @*<script type="text/javascript" src="/js/jquery2.min.js"></script>*@
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+
+
+    <title>小学生编程后台</title>
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;Ie" />
+    <![endif]-->
+    <script>if (window.top !== window.self) { window.top.location = window.location; }</script>
+    <style>
+
+        input:-webkit-autofill {
+            -webkit-text-fill-color: #252720 !important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            transition: background-color 4000s ease-in-out 0s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layui-canvs"></div>
+
+    <form asp-controller="Login" asp-area="AdminCC" asp-action="Login" id="loginForm" role="form" method="post" asp-antiforgery="true">
+        <div class="layui-layout layui-layout-login">
+            <h1>
+                <strong>小学生编程后台</strong>
+                <em></em>
+            </h1>
+            <div class="layui-user-icon larry-login">
+                <input type="text" placeholder="账号" class="login_txtbx" name="username" id="username" />
+            </div>
+            <div class="layui-pwd-icon larry-login">
+                <input type="password" placeholder="密码" class="login_txtbx" name="password" id="password" />
+            </div>
+            <div id="v_container" style="width: 350px;height: 50px;"></div>
+            <div class="layui-ver-icon larry-login">
+                <div class="layui-code-box">
+                    <input type="text" id="code_input" name="code_input" placeholder="验证码" maxlength="4" class="login_txtbx">
+
+                </div>
+            </div>
+
+            <div class="layui-submit larry-login">
+                <button type="submit" class="submit_btn" lay-filter="login">立即登陆</button>
+            </div>
+            <p class="layui-login-text">
+                超超编程 ©@DateTime.Now.Year
+            </p>
+
+            <div asp-validation-summary="All" class="text-danger">@ViewBag.error</div>
+
+        </div>
+    </form>
+
+    <!-- 全局js -->
+    <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/layui/layui.js"></script>
+    <script type="text/javascript" src="/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/js/validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="/js/rtpost.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
+    <script type="text/javascript" src="/js/jparticle.jquery.js"></script>
+    <script type="text/javascript" src="/js/gVerify.js"></script>
+    <script>
+        $(function () {
+
+            var rules = {
+                password: {
+                    required: true,
+                    minlength: 5
+                }
+            };
+            var verifyCode = new GVerify("v_container");
+
+            $(".layui-canvs").jParticle({
+                background: "#141414",
+                color: "#E6E6E6"
+            });
+
+            $(".submit_btn").click(function () {
+                var res = verifyCode.validate(document.getElementById("code_input").value);
+                if (!res) {
+                    alert("验证码错误");
+                    return false;
+                }
+                DoAdminLogin("loginForm", rules);
+            });
+        });
+    </script>
+
+</body>
+</html>

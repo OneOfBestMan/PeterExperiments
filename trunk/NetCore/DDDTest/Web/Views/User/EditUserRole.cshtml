@@ -1,0 +1,67 @@
+﻿@model Model.Users.Role
+@{
+    ViewBag.title = "查看/编辑角色详情";
+}
+<div class="wrapper wrapper-content">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>@ViewBag.Title</h5>
+            <div class="ibox-tools">
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "edituserroleForm", @class = "form-horizontal m-t" }))
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">角色名称：</label>
+                    <div class="col-sm-8">
+                        <input id="Name" name="Name" maxlength="200" type="text" class="form-control" value="@Model.Name" required aria-required="true" placeholder="填写角色名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" title="设置权限使用">角色KEY：</label>
+                    <div class="col-sm-8">
+                        <input id="Key" name="Key" maxlength="200" type="text" class="form-control" value="@Model.Key" required aria-required="true" placeholder="填写角色KEY">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">角色简介：</label>
+                    <div class="col-sm-8">
+                        <input id="Description" type="text" class="form-control" name="Description" placeholder="角色简介，非必填" value="@Model.Description" maxlength="200">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">不允许删除：</label>
+                    <div class="col-sm-8">
+                        <label class="checkbox-inline i-checks">
+                            <input type="checkbox" value="true" name="NotAllowDel" id="NotAllowDel" @(Model.NotAllowDel ? "checked" : "")> 不允许删除（勾选则该管理组不允许直接删除）
+                            <input type="hidden" value="false" name="NotAllowDel" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">排序：</label>
+                    <div class="col-sm-8">
+                        <input id="Sort" type="number" class="form-control" name="Sort" placeholder="排序" value="@Model.Sort" maxlength="3">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-3">
+                        <input type="hidden" value="@Model.Id" id="Id" name="Id" />
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 提交 </button>
+                        <button class="btn btn-default" type="button" onclick="closethisdialog();"><i class="fa fa-close"></i> 取消 </button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+</div>
+<script>
+    $(function () {
+        DoPost("edituserroleForm");
+    })
+</script>
