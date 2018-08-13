@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="row">
+    <div class="col-md-3">
+        <input class="btn btn-primary" type="button" id="adminlogin" value="登录" />
+    </div>
+
+    <div class="col-md-3">
+        <input class="btn btn-primary" type="button" id="getvalues" value="获取Values" />
+    </div>
+</div>
+
+ 
+
+
+@section Scripts{
+    <script>
+        var token;
+        $(function () {
+
+            var data = {
+                Username: "login",
+                Password: "password"
+            };
+
+            $("#adminlogin").click(function () {
+
+                $.ajax({
+                    url: "http://localhost:49840/api/Auth",
+                    dataType: 'json',
+                    type: 'post',
+                    crossDomain: true,
+                    contentType: 'application/json',
+                    //xhrFields: {
+                    //    withCredentials: true
+                    //},
+                    data:JSON.stringify(data),
+                    success: function (result) {
+                        console.log(result);
+                        token = result.token;
+                    }
+                });
+            })
+        })
+         
+
+        $("#getvalues").click(function () {
+            $.ajax({
+                url: "http://localhost:49840/api/values",
+                dataType: 'json',
+                type: 'get',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                cache: false,
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        })
+
+
+    </script>
+}
