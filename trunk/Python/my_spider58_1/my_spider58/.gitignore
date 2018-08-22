@@ -1,0 +1,6 @@
+*.bak
+*.iml
+tmp.py
+__pycache__/*
+.idea/*
+test/*
