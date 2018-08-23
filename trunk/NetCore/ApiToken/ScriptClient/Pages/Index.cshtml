@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+<div class="row">
+	<div class="col-md-3">
+		<input class="btn btn-primary" type="button" id="adminlogin" value="登录" />
+	</div>
+
+	<div class="col-md-3">
+		<input class="btn btn-primary" type="button" id="getvalues" value="获取Values" />
+	</div>
+</div>
+
+<script src="/js/apiBaseService.js"></script>
+
+
+@section Scripts{
+ 
+ 
+	<script>
+		var token;
+		$(function () {
+			apiBaseService.getToken("http://localhost:55749/api/OAuth", "liu", "123456");
+		})
+
+		$("#getvalues").click(function () {
+			$.ajax({
+				url: "http://localhost:55749/api/values",
+				dataType: 'json',
+				type: 'get',
+				xhrFields: {
+					withCredentials: true
+				},
+				cache: false,
+				success: function (result) {
+					console.log(result);
+					 
+				}
+			});
+		})
+
+
+	</script>
+}
