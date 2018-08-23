@@ -1,4 +1,5 @@
 ﻿
+using FluentValidation;
 using LC.SDK.Core.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -13,8 +14,8 @@ namespace LC.SDK.Core.Framework
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-          
-            return services;
+			//services.AddTransient(typeof(IValidator<>), typeof(AbstractValidator<>));
+			return services;
         }
 
         public static IServiceCollection RegisterGzip(this IServiceCollection services)
