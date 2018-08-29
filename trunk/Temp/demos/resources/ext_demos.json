@@ -1,0 +1,28 @@
+{
+	"external":[
+		{
+			"demo": "dnd",
+			"link": "http://sitepen.github.com/sp-dnd-demo/4-dnd.html",
+			"header": "Shopping Cart - Dylan's Original Junk Outlet, with DND",
+			"rank":	30,
+			"img" : "resources/images/no_thumb.gif",
+			"categories": "external"
+		},
+		{
+			"demo": "tweeters",
+			"link": "http://dante.dojotoolkit.org/tweeters/",
+			"header": "twitterverse - Aggregate Twitter information about Dojo, using Dojo",
+			"rank": 150,
+			"img": "resources/images/no_thumb.gif",
+			"categories": "external"
+		},
+		{
+			"demo": "mfu",
+			"link": "http://developers.sirika.com/mfu/demo.html",
+			"header": "MultiFileUploader - HTML based multiple file uploads",
+			"rank": 75,
+			"img": "resources/images/mfu.png",
+			"categories": "external"
+		}
+	]
+}
