@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>小区信息管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+	<link rel="stylesheet" href="../dijit/themes/claro/claro.css">
+	<link rel="stylesheet" href="demo.css">
+	<style type="text/css">
+		@import "../dojo/resources/dojo.css";
+		@import "../dijit/themes/claro/claro.css";
+		@import "../dojox/grid/enhanced/resources/claro/EnhancedGrid.css";
+		@import "../dojox/grid/enhanced/resources/EnhancedGrid_rtl.css";
+
+	 
+	</style>
+	<style type="text/css">
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+	</style>
+	<script>dojoConfig = { parseOnLoad: true }</script>
+	<script src='../dojo/dojo.js'></script>
+	<script>
+		require(["dojo/parser", "dijit/layout/BorderContainer", "dijit/layout/TabContainer", "dijit/layout/AccordionContainer", "dijit/layout/ContentPane", "dijit/layout/AccordionPane"]);
+	</script>
+	<script>
+		dojo.require("dojox.grid.EnhancedGrid");
+		dojo.require("dojo.data.ItemFileWriteStore");
+		var gridAttrs = {
+			rowsPerPage: 5,
+			keepSelection: true,
+			plugins: {}
+		};
+		require([
+			"dojo/request",
+			"dojo/domReady!"
+		], function (request) {
+			dojo.ready(function () {
+				/*set up data store*/
+				var data = {
+					identifier: 'id',
+					items: []
+				};
+				/*set up layout*/
+				var layout = [
+					[{//--------------------------------------------------------------------------0
+						defaultCell: { editable: true, autoComplete: true, type: dojox.grid.cells._Widget },
+						cells:
+							[
+								{ field: "id", name: "Id", datatype: "number", width: 4 },
+								{ field: "circlePosition", name: "环线", datatype: "string", width: 10 },
+								{ field: "district", name: "区域", datatype: "string", width: 10 },
+								{ field: "propertyLevel", name: "物业档次", datatype: "string", width: 6 },
+								{ field: "propertySub", name: "物业细分", datatype: "string", width: 10 },
+								{ field: "raAdress", name: "小区地址", datatype: "string", width: 6 },
+								{ field: "raId", name: " 小区ID", datatype: "number", width: 5 },
+								{ field: "raName", name: "小区名称", datatype: "string", width: 12 },
+								{ field: "raType", name: "小区类型", datatype: "string", width: 12 },
+								{ field: "sector", name: "板块", datatype: "string", width: 12 },
+								{ field: "status", name: "状态", datatype: "number", width: 4 },
+							]
+					}]
+				];
+
+				var get_data = function (option, callback) {
+					var url = "http://192.168.1.185:9010/api/ResidentialArea/search?PageIndex=" + option.pageindex + "&PageSize=" + option.pagesize + "&RAId=0&District=" + option.district + "&RAName=&RAAdress=&RAType=";
+
+					request(url).then(function (res) {
+						var obj = JSON.parse(res);
+						console.log(obj);
+						//data_list = obj.items;
+						data.items = obj.items;
+						var store = new dojo.data.ItemFileWriteStore({ data: data });
+						var t1 = (new Date()).getTime();
+						g = new dojox.grid.EnhancedGrid(dojo.mixin({
+							"id": "grid",
+							"store": store,
+							"structure": layout[0]
+						}, gridAttrs || {}));
+						g.placeAt(dojo.byId("gridContainer"));
+						g.startup();
+					}, function (err) {
+						console.log(err)
+					}, function (evt) {
+						// handle a progress event
+					});
+				};
+
+				var option = {
+					pageindex: 0,
+					pagesize: 10,
+					district: "杨浦区"
+				};
+
+				get_data(option);
+			});
+		});
+	</script>
+</head>
+<body class="claro">
+	<div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%;">
+		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+			<!--<img src="images/logo.jpg" style="height:120px;float:left" />--> <h1 style="float:left">联城房地产评估</h1>
+		</div>
+		<div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="region:'leading'">
+			<div data-dojo-type="dijit/layout/AccordionPane" title="小区管理">
+				<a href="">小区信息查询</a>
+			</div>
+			<div data-dojo-type="dijit/layout/AccordionPane" title="楼栋管理">accordion pane #2</div>
+			<div data-dojo-type="dijit/layout/AccordionPane" title="单套管理">accordion pane #3</div>
+		</div>
+		<div data-dojo-type="dijit/layout/TabContainer">
+			<!--<div id="gridDiv" style="margin-left:160px"></div>-->
+			<!--<div id="ctrlBtns" style="margin-left:160px"></div>--><br />
+			<!--<div id="pluginList" style="margin-left:160px"></div>-->
+			<div id="gridContainer" style="margin-left:160px;height:800px;width:100%;"></div><br />
+		</div>
+		<!--<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'trailing'">Trailing pane</div>-->
+		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">
+			<div style="text-align:center">Copyright © 2018  上海联城房地产评估咨询有限公司   <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:black">沪ICP备14035475号</a> </div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+Request
+POST https://www.youngmaker.com/home/user/newlogin.html HTTP/1.1
+Host: www.youngmaker.com
+Connection: keep-alive
+Content-Length: 40
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: https://www.youngmaker.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: https://www.youngmaker.com/Home/User/newlogin/type/2
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+name=13501884996&pwd=youngmaker22&type=2
+
+Response
+
+HTTP/1.1 200 OK
+Date: Mon, 03 Sep 2018 01:35:50 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Set-Cookie: __cfduid=d7976a2c76ff3db10763cbe0f19ef614b1535938550; expires=Tue, 03-Sep-19 01:35:50 GMT; path=/; domain=.youngmaker.com; HttpOnly
+X-Powered-By: PHP/7.2.5
+Set-Cookie: PHPSESSID=ekt72tr80c2c57bk2003grlsf4; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Pragma: no-cache
+Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Server: yunjiasu-nginx
+CF-RAY: 45447b652fce439a-SZV
+Content-Length: 882
+
+{"type":"2","token":"af90576a28ca752c994c8a4d9aa15f3f",
+"pic":"\/Public\/Home\/maker\/images\/little.png",
+"name":"\u5218\u5fd7\u96c4",
+"userCenterUrl":"\/home\/personal\/index.html",
+"logOutUrl":"\/home\/user\/logout.html",
+"userBox":"<li class=\"img\">\n    <img src=\"\/Public\/Home\/maker2.0\/common\/images\/little.png\" alt=\"\" \/>\n<\/li>\n<li class=\"name\" title=\"\u5218\u5fd7\u96c4\">\n                <span>\n                    \u5218\u5fd7\u96c4                <\/span>\n    <ul class=\"msgH\">\n                <li><a href=\"\/home\/personal\/index.html\">\u4e2a\u4eba\u4e2d\u5fc3<\/a><\/li>\n                <li><a href=\"\/home\/user\/logout.html\">\u9000\u51fa<\/a><\/li>\n    <\/ul>\n<\/li>\n<li class=\"allpy\">\n    <a href=\"\/home\/user\/teacherapply.html\">\u7533\u8bf7\u4e3a\u8001\u5e08<\/a>\n<\/li>\n","status":200,"remind":0,"url":"\/home\/index\/index.html"}
+
+
+
+
+GET https://www.youngmaker.com/home/Courses/study/capid/7255/catid/292/sectionid/2100/classroomid/29/ccid/14.html HTTP/1.1
+Host: www.youngmaker.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: https://www.youngmaker.com/home/courses/catalog/id/292/classroomid/29/ccid/14.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: __cfduid=d606c707967f106ee9179df46d10214051534223058; PHPSESSID=af9p6e707co4hcbl3vjo3e178s; UM_distinctid=1659d0c024745b-0ce316db47a4e3-51422e1f-1fa400-1659d0c02483e1; CNZZDATA1262355882=719981530-1535934345-%7C1535934345; yjs_id=62f2ad27c21284e070a7b57da16fbb62; ctrl_time=1
+
+GET https://www.youngmaker.com/home/index/index.html HTTP/1.1
+Host: www.youngmaker.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: https://www.youngmaker.com/Home/Courses/curriculum
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: __cfduid=d606c707967f106ee9179df46d10214051534223058; PHPSESSID=af9p6e707co4hcbl3vjo3e178s; UM_distinctid=1659d0c024745b-0ce316db47a4e3-51422e1f-1fa400-1659d0c02483e1; CNZZDATA1262355882=719981530-1535934345-%7C1535934345; yjs_id=62f2ad27c21284e070a7b57da16fbb62; ctrl_time=1
+
+--------------------------------
+
+POST https://www.youngmaker.com/home/user/newlogin.html HTTP/1.1
+Host: www.youngmaker.com
+Connection: keep-alive
+Content-Length: 86
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: https://www.youngmaker.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: https://www.youngmaker.com/Home/User/newlogin/type/2
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: __cfduid=d606c707967f106ee9179df46d10214051534223058; PHPSESSID=af9p6e707co4hcbl3vjo3e178s; UM_distinctid=1659d0c024745b-0ce316db47a4e3-51422e1f-1fa400-1659d0c02483e1; CNZZDATA1262355882=719981530-1535934345-%7C1535934345; yjs_id=62f2ad27c21284e070a7b57da16fbb62; ctrl_time=1
+
+name=13501884996&pwd=youngmaker22&redirect=aHR0cHM6Ly93d3cueW91bmdtYWtlci5jb20v&type=2
+
+HTTP/1.1 200 OK
+Date: Mon, 03 Sep 2018 01:43:38 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+X-Powered-By: PHP/7.2.5
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Pragma: no-cache
+Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Server: yunjiasu-nginx
+CF-RAY: 454486d2ff7043ad-SZV
+Content-Length: 887
+
+{"type":"2","token":"af90576a28ca752c994c8a4d9aa15f3f",
+"pic":"\/Public\/Home\/maker\/images\/little.png",
+"name":"\u5218\u5fd7\u96c4",
+"userCenterUrl":"\/home\/personal\/index.html",
+"logOutUrl":"\/home\/user\/logout.html",
+"userBox":"<li class=\"img\">\n    <img src=\"\/Public\/Home\/maker2.0\/common\/images\/little.png\" alt=\"\" \/>\n<\/li>\n<li class=\"name\" title=\"\u5218\u5fd7\u96c4\">\n                <span>\n                    \u5218\u5fd7\u96c4                <\/span>\n    <ul class=\"msgH\">\n                <li><a href=\"\/home\/personal\/index.html\">\u4e2a\u4eba\u4e2d\u5fc3<\/a><\/li>\n                <li><a href=\"\/home\/user\/logout.html\">\u9000\u51fa<\/a><\/li>\n    <\/ul>\n<\/li>\n<li class=\"allpy\">\n    <a href=\"\/home\/user\/teacherapply.html\">\u7533\u8bf7\u4e3a\u8001\u5e08<\/a>\n<\/li>\n",
+"status":200,
+"remind":0,
+"url":"https:\/\/www.youngmaker.com\/"}
+
+GET https://www.youngmaker.com/Home/Courses/curriculum HTTP/1.1
+Host: www.youngmaker.com
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: https://www.youngmaker.com/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: __cfduid=d606c707967f106ee9179df46d10214051534223058; 
+PHPSESSID=af9p6e707co4hcbl3vjo3e178s; 
+UM_distinctid=1659d0c024745b-0ce316db47a4e3-51422e1f-1fa400-1659d0c02483e1; 
+CNZZDATA1262355882=719981530-1535934345-%7C1535934345; 
+yjs_id=62f2ad27c21284e070a7b57da16fbb62; ctrl_time=1
+
