@@ -15,7 +15,7 @@
 	<div id="gridContainer"></div><br/>
 	<div id="ctrlBtns2"></div><br/>
 	
-	<div id="menusSupport">
+	<div id="menusSupport" style="display:none">
 		<div dojoType="dijit.Menu" id="headerMenu"  >
 			<div dojoType="dijit.MenuItem">Header Menu Item 1</div>
 			<div dojoType="dijit.MenuItem">Header Menu Item 2</div>
@@ -41,7 +41,7 @@
 			<div dojoType="dijit.MenuItem">Action 4 for Selected Region</div>
 		</div>
 	</div>
-	<div id="exporterSupport" class="supporter"  >
+	<div id="exporterSupport" class="supporter"   style="display:none">
 		<input type='button' id='exportAllCSV' value='Export All to CSV'/>
 		<input type='button' id='exportSelectedCSV' value='Export Selected to CSV'/>
 		Separator is:<input id='sep' type='text' value=',' />
@@ -54,7 +54,7 @@
 		<input type='button' value='Print Preview' onclick='printPreview()' />
 		Use Title:<input id='print_title' type='text' value='Favorite Music' />
 	</div>
-	<div id="cellMergeSupport" class="supporter"  >
+	<div id="cellMergeSupport" class="supporter"   style="display:none">
 		<table>
 			<tr>
 				<td>At Row</td>
@@ -77,7 +77,7 @@
 			</tr>
 		</table>
 	</div>
-	<div id="paginationSupport" class="supporter" >
+	<div id="paginationSupport" class="supporter"  style="display:none">
 		<table>
 			<tr>
 				<td><input id="inputScrollToRowIdx" type="text" /></td>
@@ -97,15 +97,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="tutor">
-		<p>
-			<h2>How to use this page:</h2>
-			<ol>
-				<li>Select plugins/options at right side.</li>
-				<li>Press "Create" button.</li>
-			</ol>	
-		</p>
-	</div>
+ 
 	<div id="repeatcounter" style="float: left;"></div>
 </body>
 </html>

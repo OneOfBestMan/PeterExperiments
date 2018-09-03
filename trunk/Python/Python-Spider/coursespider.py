@@ -21,7 +21,7 @@ class CourseSpider():
     def __init__(self):
         self.my_url = 'https://www.youngmaker.com/home/courses/study/capid/7255/catid/292/sectionid/2100/classroomid/29/ccid/14.html'
         self.user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
-        self.cookies="yjs_id=ffcbd409b2e680e280b6e8221189d3d3; PHPSESSID=568bcu9pvg6bcgnn2h4doie4kb; CNZZDATA1262355882=264602239-1530607552-https%253A%252F%252Fwww.baidu.com%252F%7C1535929219; ctrl_time=1"
+        self.cookies="yjs_id=62f2ad27c21284e070a7b57da16fbb62; PHPSESSID=af9p6e707co4hcbl3vjo3e178s; CNZZDATA1262355882=719981530-1535934345-%7C1535934345; ctrl_time=1"
         self.cookie_dir = 'D:/cookie_youngmaker.txt'
         self.user_headers = {
             'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
