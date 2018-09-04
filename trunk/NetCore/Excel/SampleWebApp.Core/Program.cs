@@ -16,6 +16,8 @@ namespace SampleWebApp.Core
 		public static IWebHost BuildWebHost(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
 				.UseStartup<Startup>()
+				//.UseKestrel(op => op.Limits.MaxRequestBodySize = null)
+				//.UseHttpSys(op=>op.MaxRequestBodySize=1_000_000_000)
 				.Build();
 	}
 }

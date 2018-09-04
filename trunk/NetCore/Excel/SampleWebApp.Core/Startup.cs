@@ -17,10 +17,11 @@ namespace SampleWebApp.Core
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//services.AddSingleton(IConfigurationRoot, Configure);
-			services.AddSingleton<IConfiguration>(Configuration);
+			//services.AddSingleton<IConfiguration>(Configuration);
 			services.AddScoped<IImportExcel, ImportExcelDefault>();
 			services.AddScoped<IInsertObject, InsertObjectDefault>();
 			services.AddMvc();
+			
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -29,6 +30,7 @@ namespace SampleWebApp.Core
 			app.UseMvcWithDefaultRoute();
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
+			
 		}
 	}
 }

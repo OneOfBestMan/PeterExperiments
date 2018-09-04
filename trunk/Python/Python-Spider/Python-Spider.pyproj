@@ -38,6 +38,7 @@
     <Content Include="webinfo\WebPage1.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="videos\" />
     <Folder Include="webinfo\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
