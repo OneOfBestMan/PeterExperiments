@@ -1,17 +1,21 @@
 
 # 引入python自带的http请求库
-from urllib import request
+#from urllib import request
 import re
 import requests
 import os
 import http.cookiejar
+from selenium import webdriver
+import time
 # mock http request 
 # 正则\s\S匹配所有字符 *代表匹配0次或无线多次 ?代表非贪婪模式 () 代表组 正则匹配之后只取到需要的数据
 class CourseSpider():
+    urlLogin='https://www.youngmaker.com/home/user/newlogin.html'
     urlbase='https://www.youngmaker.com'
     url = 'https://www.youngmaker.com/home/courses/study/capid/7255/catid/292/sectionid/2100/classroomid/29/ccid/14.html'
     # 匹配所有符合的大的节点
     VIDEOALL = '<div class="mulu" ([\s\S]*?)</div>'
+    VIDEOURL = 'src="//([^"]+)"'
     # 匹配名称
     #VIDEOA = '<a class="study_data" href="(.+)">(.+)</a>'
     VIDEOA = 'href="([^\"]*)"'
@@ -28,15 +32,47 @@ class CourseSpider():
             'Accept - Encoding': "gzip, deflate, br",
             'Connection': "Keep-Alive",
             'User-Agent': self.user_agent,
-            'Cookie': self.cookies
+            #'Cookie': self.cookies
         }
 
-    def __fetch_content(self):
-        res = request.Request(url=self.my_url,headers=self.user_headers)
-        r = request.urlopen(res)
-        htmls = r.read()
-        htmls = str(htmls, encoding='utf-8')
-        return htmls
+    def login(self,name, passwd):
+    # 这里可以用Chrome、Phantomjs等，如果没有加入环境变量，需要指定具体的位置
+        login_name = name
+        login_password = passwd
+        driver = webdriver.Chrome()
+        driver.get(CourseSpider.urlbase)
+        time.sleep(1)
+
+        login_button = driver.find_element_by_id('login_b')
+
+        login_button.click()
+        time.sleep(3)
+
+        driver.switch_to_frame("layui-layer-iframe1")
+        time.sleep(1)
+
+        username = driver.find_element_by_id('inputEmail')
+        username.clear()
+        password = driver.find_element_by_id('inputPassword')
+        password.clear()
+        username.send_keys(login_name)
+        password.send_keys(login_password)
+
+        submit = driver.find_element_by_css_selector('button[type=\"button\"]')
+        time.sleep(1)
+        submit.click()
+        time.sleep(3)
+        return driver.get_cookies()
+
+    def sele2req_cookie(self,cookies):
+        cookie_dict = dict()
+        for cookie in cookies:
+            cookie_dict[cookie['name']] = cookie['value']
+        return cookie_dict
+
+    def __fetch_content(self,req_cookies,urlRequest):
+        content=requests.get(url=urlRequest, headers=self.user_headers, cookies=req_cookies)
+        return content.text
 
     def __getcourseurl(self,htmls):
         courseurl=re.findall(CourseSpider.VIDEOALL,htmls)
@@ -59,18 +95,29 @@ class CourseSpider():
         for anchor in anchors:
             print(anchor)
 
-    def __down(self, url):
-        filename = os.path.basename(url)
-        r=requests.get(url)
+    def __downloadAll(self, anchors,req_cookies):
+        for anchor in anchors:
+            self.__down(anchor,req_cookies)
+
+    def __down(self, url,req_cookies):
+        html = self.__fetch_content(req_cookies,url)
+        videourl=re.search(CourseSpider.VIDEOURL,html, re.I|re.S|re.M)
+        filename = os.path.basename(videourl)
+        r=requests.get(videourl)
         with open(filename,"wb") as f:
              f.write(r.content)
         f.close()
 
     # 启动方法
     def go(self):
-        htmls = self.__fetch_content()
+        login_name = '13501884996'
+        login_password = 'youngmaker22'
+        cookies=self.login(login_name,login_password)
+        req_cookies =self.sele2req_cookie(cookies)
+       #content = requests.get(myspace, headers=headers, cookies=req_cookies)
+        htmls = self.__fetch_content(req_cookies,self.my_url)
         anchors = self.__getcourseurl(htmls)
-        self.__show(anchors)
+        self.__downloadAll(anchors,req_cookies)
 
 t = CourseSpider()
 t.go()
