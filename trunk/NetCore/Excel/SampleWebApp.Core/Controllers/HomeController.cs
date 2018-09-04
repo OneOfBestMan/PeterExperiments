@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using Peter.ExcelOperation;
@@ -18,14 +20,16 @@ namespace SampleWebApp.Core.Controllers
 		private const string XlsxContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 		private readonly IHostingEnvironment _hostingEnvironment;
 		private readonly IImportExcel _importer;
+		private readonly IInsertObject _insertObject;
+		private readonly IConfiguration _configuration;
 
-
-		public HomeController(IHostingEnvironment hostingEnvironment, IImportExcel importer)
+		public HomeController(IConfiguration configuration, IHostingEnvironment hostingEnvironment, IImportExcel importer, IInsertObject insertObject)
 		{
+			_configuration = configuration;
 			_hostingEnvironment = hostingEnvironment;
 			_importer = importer;
 			_importer.Options = new ValidOption() { ColumnsShouldBe = 2 };
-
+			_insertObject = insertObject;
 		}
 
 		/// <summary>
@@ -83,54 +87,35 @@ namespace SampleWebApp.Core.Controllers
 
 		public async Task<IActionResult> FileUpload(IFormFile file)
 		{
-			//#region test1
-			//if (file == null || file.Length == 0)
-			//         {
-			//             return RedirectToAction("Index");
-			//         }
-			//var table=await _importer.Upload(file);
-			//StringBuilder sb = new StringBuilder();
-			//if (table!=null)
-			//{
-
-			//	foreach (DataRow row in table.Rows)
-			//	{
-			//		sb.Append(row[0]+","+row[1]);
-			//	}
-
-			//}
-			//return Content(sb.ToString());
-			//#endregion
-
 			#region testw
 			if (file == null || file.Length == 0)
 			{
 				return RedirectToAction("Index");
 			}
-			var list = await _importer.Upload<ExcelImport>(file);
+			//var list = await _importer.Upload<ExcelImport>(file);
+			var table = await _importer.Upload(file);
 			StringBuilder sb = new StringBuilder();
-			if (list != null)
+			var name = file.Name;
+			CRUDOption option = new CRUDOption()
 			{
-				if (list.Messages!=null && list.Messages.Count>0)
-				{
-					foreach (var item in list.Messages)
-					{
-						sb.Append(item.Name+";");
-					}
-				}
-				else
-				{
-					foreach (ExcelImport row in list.Data)
-					{
-						sb.Append(row.Name + "," + row.Age);
-					}
-				}
-				
-
-			}
-			return Content(sb.ToString());
+				TableName = "ExcelImport",
+				BatchSize = 10000,
+				BulkCopyTimeout = 600,
+				NotifyAfter = 10000,
+				ColumnMapping = new Dictionary<string, string>()
+			};
+			option.ColumnMapping.Add("名称", "Name");
+			option.ColumnMapping.Add("年龄", "Age");
+			//_insertObject.RowsCopied += OnSqlRowsCopied;
+			_insertObject.Insert<ExcelImport>(table, option);
+			return Content("");
 			#endregion
 
+		}
+
+		public virtual void OnSqlRowsCopied(object sender, SqlRowsCopiedEventArgs e)
+		{
+			Response.WriteAsync(e.RowsCopied.ToString());
 		}
 
 		/// <summary>

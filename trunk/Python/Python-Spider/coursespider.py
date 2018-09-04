@@ -101,7 +101,7 @@ class CourseSpider():
 
     def __down(self, url,req_cookies):
         html = self.__fetch_content(req_cookies,url)
-        videourl=re.search(CourseSpider.VIDEOURL,html, re.I|re.S|re.M)
+        videourl=re.findall(CourseSpider.VIDEOURL,html, re.I|re.S|re.M)[0]
         filename = os.path.basename(videourl)
         r=requests.get(videourl)
         with open(filename,"wb") as f:
