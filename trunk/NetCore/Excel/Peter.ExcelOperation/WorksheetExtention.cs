@@ -19,7 +19,6 @@ namespace Peter.ExcelOperation
 					tbl.Columns.Add(columnName);
 				}
 			}
-
 			var startRow = hasHeaderRow ? 2 : 1;
 			for (var rowNum = startRow; rowNum <= ws.Dimension.End.Row; rowNum++)
 			{
@@ -31,7 +30,7 @@ namespace Peter.ExcelOperation
 			return tbl;
 		}
 
-		public static List<T> ToDataTable<T>(this ExcelWorksheet ws, bool hasHeaderRow = true) where T : class
+		public static List<T> ToList<T>(this ExcelWorksheet ws, bool hasHeaderRow = true) where T : class
 		{
 			List<T> retList = new List<T>();
 			using (var pck = new ExcelPackage())

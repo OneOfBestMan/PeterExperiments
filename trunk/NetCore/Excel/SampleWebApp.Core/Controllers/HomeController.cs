@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,6 +86,8 @@ namespace SampleWebApp.Core.Controllers
 			return Content(readExcelPackage(fileInfo, worksheetName: "Employee"));
 		}
 
+		//[DisableRequestSizeLimit]
+		[RequestSizeLimit(100_000_000_000)]
 		public async Task<IActionResult> FileUpload(IFormFile file)
 		{
 			#region testw
@@ -106,9 +109,23 @@ namespace SampleWebApp.Core.Controllers
 			};
 			option.ColumnMapping.Add("名称", "Name");
 			option.ColumnMapping.Add("年龄", "Age");
+			option.ColumnMapping.Add("小区名称", "RAName");
+			option.ColumnMapping.Add("小区地址", "RAAdress");
+			option.ColumnMapping.Add("竣工年份", "CompletionYear");
+			option.ColumnMapping.Add("主力面积", "MainArea");
+			option.ColumnMapping.Add("有无电梯", "IsHaveElevator");
+			option.ColumnMapping.Add("地上层数", "Floors");
+			option.ColumnMapping.Add("物业档次", "PropertyLevel");
+			option.ColumnMapping.Add("主力面积基价", "MainAreaBasePrice");
+			option.ColumnMapping.Add("小区价格说明", "RAPriceMemo");
+			option.ColumnMapping.Add("价值时点", "ValuePoint");
 			//_insertObject.RowsCopied += OnSqlRowsCopied;
+			Stopwatch watch = new Stopwatch();
+			watch.Start();
 			_insertObject.Insert<ExcelImport>(table, option);
-			return Content("");
+			watch.Stop();
+			string executedTime = watch.ElapsedMilliseconds.ToString();
+			return Content("执行共:"+ executedTime+"毫秒");
 			#endregion
 
 		}

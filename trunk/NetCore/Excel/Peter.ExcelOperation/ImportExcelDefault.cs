@@ -79,7 +79,7 @@ namespace Peter.ExcelOperation
 				using (var package = new ExcelPackage(memoryStream))
 				{
 					var worksheet = package.Workbook.Worksheets[0]; // Tip: To access the first worksheet, try index 1, not 0
-					var list = worksheet.ToDataTable<T>();
+					var list = worksheet.ToList<T>();
 					var result = Valid<T>(worksheet);
 					if (result != null && result.Messages.Count > 0)
 					{

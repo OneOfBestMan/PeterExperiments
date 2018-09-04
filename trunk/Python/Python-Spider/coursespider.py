@@ -17,8 +17,9 @@ class CourseSpider():
     VIDEOALL = '<div class="mulu" ([\s\S]*?)</div>'
     VIDEOURL = 'src="//([^"]+)"'
     # 匹配名称
-    #VIDEOA = '<a class="study_data" href="(.+)">(.+)</a>'
-    VIDEOA = 'href="([^\"]*)"'
+ 
+   # VIDEOA = 'href="([^\"]*)"'
+    VIDEOA = '<a.*?href="([^\"]*)".*?>(.*?)</a>'
     # 所有的目标链接
     COURSEURL =[]
 	# 所有的链接
@@ -77,9 +78,11 @@ class CourseSpider():
     def __getcourseurl(self,htmls):
         courseurl=re.findall(CourseSpider.VIDEOALL,htmls)
         urls=re.findall(CourseSpider.VIDEOA,courseurl[0], re.I|re.S|re.M)
-        anchors=[]
+        anchors= dict()
+        dr = re.compile(r'<[^>]+>',re.S)
         for url in urls:
-            anchors.append(CourseSpider.urlbase+url)
+            key=dr.sub('',url[1]).replace("\r","").replace("\n","")
+            anchors[key]=CourseSpider.urlbase+ url[0]
         return anchors;
 
     # 数据精炼 去掉空格和换行符
@@ -96,17 +99,21 @@ class CourseSpider():
             print(anchor)
 
     def __downloadAll(self, anchors,req_cookies):
-        for anchor in anchors:
-            self.__down(anchor,req_cookies)
+        for key in anchors.keys():
+            self.__down(key,anchors[key],req_cookies)
 
-    def __down(self, url,req_cookies):
-        html = self.__fetch_content(req_cookies,url)
-        videourl=re.findall(CourseSpider.VIDEOURL,html, re.I|re.S|re.M)[0]
-        filename = os.path.basename(videourl)
-        r=requests.get(videourl)
-        with open(filename,"wb") as f:
-             f.write(r.content)
-        f.close()
+    def __down(self,key, url,req_cookies):
+        try:
+            html = self.__fetch_content(req_cookies,url)
+            videourl=re.findall(CourseSpider.VIDEOURL,html, re.I|re.S|re.M)[0]
+            filename = "videos/"+key+os.path.basename(videourl)
+            r=requests.get("https://"+videourl)
+            with open(filename,"wb") as f:
+                 f.write(r.content)
+            f.close()
+        except Exception:#如果有异常则输出告警 EXception可以捕获python中任意异常，它属于异常基类
+           print("可能没有文件下载 !")
+
 
     # 启动方法
     def go(self):
