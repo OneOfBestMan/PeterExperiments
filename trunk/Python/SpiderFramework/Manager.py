@@ -10,21 +10,22 @@ class UrlDto(object):
 class Manager(object):
       
       #所有Url数组，对象UrlDto的数组
-      Urls=[]
+      def __init__(self):
+          self.Urls=[]
 
       def AddUrl(self,urlDto):
-          if urlDto in Manager.Urls:
+          if urlDto in self.Urls:
                print(url+"已存在")
           else:
-               Manager.Urls.append(urlDto)
+               self.Urls.append(urlDto)
 
       def AddUrls(self,urlDtos):
           for dto in urlDtos:
-              AddUrl(url,dto)
+              self.AddUrl(dto)
 
       def RemoveUrl(self,url):
-          for dto in Manager.Urls:
+          for dto in self.Urls:
               if dto.url==url:
-                 Manager.Urls.remove(dto)
+                 self.Urls.remove(dto)
 
 

@@ -4,6 +4,7 @@
 import requests
 import re
 import os
+import datetime
 
 class BaseRequest(object):
       
@@ -21,31 +22,36 @@ class BaseRequest(object):
           dr = re.compile(r'<[^>]+>',re.S)
           for url in urls:
               key=dr.sub('',url[1]).replace("\r","").replace("\n","")
+              intourl=''
               if  'http' in url[0]:
-                  anchors[key]=url[0]
+                  intourl=url[0]
               else:
-                  anchors[key]=self.taskOption.baseUrl+ url[0]
+                  intourl=self.taskOption.baseUrl+ url[0]
+              if intourl not in anchors.values():
+                 anchors[key]=intourl
           return anchors;
 
       def downloadUrlsFromPage(self,html,req_cookies):
           reA = 'src="//([^"]+)"'
           downloadurls = re.findall(reA,html, re.I|re.S|re.M)
           #dr = re.compile(r'<[^>]+>',re.S)
+          dir=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+          os.mkdir(dir) 
           for url in downloadurls:
               #key=dr.sub('',url[1]).replace("\r","").replace("\n","")
               name=os.path.basename(url)
               if  'http' in url[0]:
-                   self.download(name,url,req_cookies)
+                   self.download(dir,name,url,req_cookies)
               else:
                   url=self.taskOption.baseUrl+ url[0]
-                  self.download(name,url,req_cookies)
-          return anchors;
+                  self.download(dir,name,url,req_cookies)
 
-      def download(self,filename, url,req_cookies):
+      def download(self,dir,filename, url,req_cookies):
           try:
              r=requests.get(url)
-             with open(filename,"wb") as f:
+             with open(dir+'/'+filename,"wb") as f:
                  f.write(r.content)
+                 print("下载文件"+filename)
              f.close()
           except Exception:# 异常基类
                  print("可能没有文件下载 !")

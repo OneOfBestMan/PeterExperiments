@@ -50,8 +50,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="refhtmls\WebPage1.html" />
     <Content Include="requirements.txt" />
     <Content Include="sln.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="refhtmls\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

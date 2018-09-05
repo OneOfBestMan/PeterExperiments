@@ -22,8 +22,8 @@ class CockieProvider():
           username.clear()
           password = driver.find_element_by_id('inputPassword')
           password.clear()
-          username.send_keys(login_name)
-          password.send_keys(login_password)
+          username.send_keys(name)
+          password.send_keys(passwd)
           
           submit = driver.find_element_by_css_selector('button[type=\"button\"]')
           time.sleep(1)
