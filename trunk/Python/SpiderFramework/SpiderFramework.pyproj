@@ -30,13 +30,22 @@
     <Compile Include="BaseHelper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseRequest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CockieProvider.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Manager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TaskOption.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestGetUrls.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

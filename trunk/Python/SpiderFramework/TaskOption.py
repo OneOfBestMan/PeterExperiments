@@ -4,9 +4,14 @@
 #   访问的顶级URL
 
 class TaskOption(object):
-      def __init__(self, fileType, maxLevel, baseUrl, loginUrl):
-        self.fileType = fileType
-        self.maxLevel = maxLevel
+      def __init__(self, baseUrl, loginUrl,beginUrl,fileType, maxLevel, headers,reTargetUrl):
         self.baseUrl = baseUrl
         self.loginUrl= loginUrl
+        self.beginUrl=beginUrl
+        self.fileType = fileType
+        self.maxLevel = maxLevel
+
+        self.headers= headers
+        self.reTargetUrl=reTargetUrl
+
  
