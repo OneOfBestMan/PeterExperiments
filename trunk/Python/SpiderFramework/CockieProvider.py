@@ -2,6 +2,7 @@
 import requests
 from selenium import webdriver
 import time
+
 class CockieProvider():
       def __init__(self,taskOption):
           self.taskOption=taskOption
@@ -28,6 +29,13 @@ class CockieProvider():
           time.sleep(1)
           submit.click()
           time.sleep(2)
-          return driver.get_cookies()
+          cookie_dict=self._sele2req_cookie(driver.get_cookies())
+          return cookie_dict
+
+      def _sele2req_cookie(self,cookies):
+          cookie_dict = dict()
+          for cookie in cookies:
+              cookie_dict[cookie['name']] = cookie['value']
+          return cookie_dict
 
 

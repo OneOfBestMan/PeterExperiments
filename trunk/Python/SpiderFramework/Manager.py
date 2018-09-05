@@ -7,22 +7,24 @@ class UrlDto(object):
           self.level=level
           self.isVisited=isVisited
 
-
-
 class Manager(object):
       
       #所有Url数组，对象UrlDto的数组
       Urls=[]
 
-      def AddUrl(self,url,name,level):
-          if url in Urls:
+      def AddUrl(self,urlDto):
+          if urlDto in Manager.Urls:
                print(url+"已存在")
           else:
-               Urls.append(UrlDto(name,url,level,False))
+               Manager.Urls.append(urlDto)
+
+      def AddUrls(self,urlDtos):
+          for dto in urlDtos:
+              AddUrl(url,dto)
 
       def RemoveUrl(self,url):
-          if url in Urls:
-               print(url+"已存在")
-          else:
-               Urls.append(UrlDto(name,url,level,False))
+          for dto in Manager.Urls:
+              if dto.url==url:
+                 Manager.Urls.remove(dto)
+
 
