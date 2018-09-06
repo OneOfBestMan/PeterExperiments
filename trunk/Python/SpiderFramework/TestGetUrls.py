@@ -3,7 +3,7 @@ import TaskOption
 import CockieProvider
 import Manager
 import BaseRequest
-
+import time
 
 class TestGetUrls(object):
       
@@ -24,26 +24,42 @@ class TestGetUrls(object):
           login_password = 'youngmaker22'
           provider=CockieProvider.CockieProvider(TestGetUrls.option)
           cookie_dict=provider.login(login_name,login_password)
-          self.getAllUrls(TestGetUrls.option.beginUrl,1,cookie_dict)
+
+          dto=Manager.UrlDto('起始链接',TestGetUrls.option.beginUrl,1,False)
+          self.getThisUrl(dto,cookie_dict)
+          self.getLoopManagerUrls()
+
           for dto in TestGetUrls.manager.Urls:
               print(dto.name+":"+dto.url)
           #files=request.downloadUrlsFromPage(html,cookie_dict)
 
-      def getAllUrls(self,baseUrl,level,cookie):
-          print("获取url"+baseUrl+',level='+str(level))
+      def getThisUrl(self,dto,cookie):
+          print("获取url"+dto.url+',level='+str(dto.level))
           request=BaseRequest.BaseRequest(TestGetUrls.option)
-          html=request.getPage(baseUrl,cookie)
+          html=request.getPage(dto.url,cookie)
           urls=request.getSearchUrlsFromPage(html)
+          dto.isVisited=True
           dtos=[]
-          if len(urls) >0  and level< 5:
+          if len(urls) >0  and dto.level< 5:
              for key in urls.keys():
                  if "course" in urls[key] or "Course" in urls[key]: 
-                     dto=Manager.UrlDto(key,urls[key],level,False)
+                     dto=Manager.UrlDto(key,urls[key],dto.level,False)
                      dtos.append(dto)
              TestGetUrls.manager.AddUrls(dtos)
-             for key in urls.keys():
-                 if "course" in urls[key] or "Course" in urls[key]:
-                     self.getAllUrls(urls[key],level+1,cookie)
+             
+      def getLoopManagerUrls(self):
+          urlsToLoop=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Urls)
+          while len(urlsToLoop) >0:
+                for dto in urlsToLoop:
+                    self.getAllUrls(dto.url,dto.level+1,cookie)
+                time.sleep(3)
+                urlsToLoop=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Urls)
+
+      def _getNotVisitUrlPredict(self,dto):
+          return dto.isVisited==False;
+
+
+
 
 
 
