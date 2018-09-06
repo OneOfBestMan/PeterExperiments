@@ -5,6 +5,7 @@ import Manager
 import BaseRequest
 import time
 import os
+import threading
 
 class TestGetUrls(object):
       
@@ -15,9 +16,9 @@ class TestGetUrls(object):
                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
                  #'Cookie': self.cookies
                }
-      option = TaskOption.TaskOption("https://www.youngmaker.com/", "https://www.youngmaker.com/",'https://www.youngmaker.com/home/Courses/study/capid/7255/catid/292/sectionid/2100/classroomid/29/ccid/14.html',"mp4", 5, headers,"")
+      option = TaskOption.TaskOption("https://www.youngmaker.com/", "https://www.youngmaker.com/","https://www.youngmaker.com/home/courses/study/catid/292/capid/7255/classroomid/29/sectionid/2100/ccid/14.html","mp4", 5, headers,"")
       cookie_dict=dict()
-      manager=Manager.Manager()
+
 
       def startSplider(self):
           level=1
@@ -27,11 +28,12 @@ class TestGetUrls(object):
           cookie_dict=provider.login(login_name,login_password)
 
           dto=Manager.UrlDto('起始链接',TestGetUrls.option.beginUrl,1,False)
-          TestGetUrls.manager.AddUrl(dto)
-          self.getThisUrl(dto,cookie_dict)
-          self.getLoopManagerUrls(cookie_dict)
+          manager=Manager.Manager(cookie_dict,TestGetUrls.option)
+          manager.AddUrl(dto)
+          #self.getThisUrl(dto,cookie_dict)
+          #self.getLoopManagerUrls(cookie_dict)
 
-          for dto in TestGetUrls.manager.Dtos:
+          for dto in  manager.Dtos:
               print(dto.name+":"+dto.url)
           #files=request.downloadUrlsFromPage(html,cookie_dict)
 
@@ -49,6 +51,9 @@ class TestGetUrls(object):
                      dtos.append(dto)
              TestGetUrls.manager.AddUrls(dtos)
              
+      def _getNotVisitUrlPredict(self,dto):
+          return dto.isVisited==False;
+
       def getLoopManagerUrls(self,cookie):
           urlsfiltered=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Dtos)
           urlsToLoop=list(urlsfiltered)
@@ -64,9 +69,6 @@ class TestGetUrls(object):
                 print("可能没有连接了!")
                 time.sleep(3)
                 self.getLoopManagerUrls(cookie)
-
-      def _getNotVisitUrlPredict(self,dto):
-          return dto.isVisited==False;
 
 
 
