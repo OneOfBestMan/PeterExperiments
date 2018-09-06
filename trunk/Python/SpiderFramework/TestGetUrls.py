@@ -4,6 +4,7 @@ import CockieProvider
 import Manager
 import BaseRequest
 import time
+import os
 
 class TestGetUrls(object):
       
@@ -14,7 +15,7 @@ class TestGetUrls(object):
                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
                  #'Cookie': self.cookies
                }
-      option = TaskOption.TaskOption("https://www.youngmaker.com/", "https://www.youngmaker.com/",'https://www.youngmaker.com/home/courses/study/capid/7255/catid/292/sectionid/2100/classroomid/29/ccid/14.html',"mp4", 5, headers,"")
+      option = TaskOption.TaskOption("https://www.youngmaker.com/", "https://www.youngmaker.com/",'https://www.youngmaker.com/home/Courses/study/capid/7255/catid/292/sectionid/2100/classroomid/29/ccid/14.html',"mp4", 5, headers,"")
       cookie_dict=dict()
       manager=Manager.Manager()
 
@@ -26,15 +27,16 @@ class TestGetUrls(object):
           cookie_dict=provider.login(login_name,login_password)
 
           dto=Manager.UrlDto('起始链接',TestGetUrls.option.beginUrl,1,False)
+          TestGetUrls.manager.AddUrl(dto)
           self.getThisUrl(dto,cookie_dict)
-          self.getLoopManagerUrls()
+          self.getLoopManagerUrls(cookie_dict)
 
-          for dto in TestGetUrls.manager.Urls:
+          for dto in TestGetUrls.manager.Dtos:
               print(dto.name+":"+dto.url)
           #files=request.downloadUrlsFromPage(html,cookie_dict)
 
       def getThisUrl(self,dto,cookie):
-          print("获取url"+dto.url+',level='+str(dto.level))
+          print("获取:"+dto.name+',level='+str(dto.level)+",url="+dto.url)
           request=BaseRequest.BaseRequest(TestGetUrls.option)
           html=request.getPage(dto.url,cookie)
           urls=request.getSearchUrlsFromPage(html)
@@ -47,13 +49,21 @@ class TestGetUrls(object):
                      dtos.append(dto)
              TestGetUrls.manager.AddUrls(dtos)
              
-      def getLoopManagerUrls(self):
-          urlsToLoop=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Urls)
-          while len(urlsToLoop) >0:
+      def getLoopManagerUrls(self,cookie):
+          urlsfiltered=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Dtos)
+          urlsToLoop=list(urlsfiltered)
+          try:
+              while urlsToLoop and len(urlsToLoop) >0:
                 for dto in urlsToLoop:
-                    self.getAllUrls(dto.url,dto.level+1,cookie)
+                    dto.level=dto.level+1
+                    dto.isVisited=True
+                    self.getThisUrl(dto,cookie)
+                time.sleep(1)
+                urlsToLoop=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Dtos)
+          except Exception:
+                print("可能没有连接了!")
                 time.sleep(3)
-                urlsToLoop=filter(self._getNotVisitUrlPredict, TestGetUrls.manager.Urls)
+                self.getLoopManagerUrls(cookie)
 
       def _getNotVisitUrlPredict(self,dto):
           return dto.isVisited==False;

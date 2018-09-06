@@ -36,6 +36,9 @@
     <Compile Include="CockieProvider.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="globalData.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Manager.py">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +53,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="refhtmls\TextFile1.txt" />
+    <Content Include="refhtmls\TextFile2.txt" />
     <Content Include="refhtmls\WebPage1.html" />
     <Content Include="requirements.txt" />
     <Content Include="sln.txt" />

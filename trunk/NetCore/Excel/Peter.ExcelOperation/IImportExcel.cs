@@ -8,7 +8,6 @@ namespace Peter.ExcelOperation
 {
 	public interface IImportExcel
 	{
-
 		Task<DataTable> Upload(IFormFile file);
 		Task<ImportResult<T>> Upload<T>(IFormFile file) where T : class;
 		ImportResult<T> Valid<T>(ExcelWorksheet ws) where T : class;
