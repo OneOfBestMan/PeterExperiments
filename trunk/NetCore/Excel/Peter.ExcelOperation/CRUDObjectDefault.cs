@@ -9,11 +9,14 @@ using System.Data;
 
 namespace Peter.ExcelOperation
 {
-	public class InsertObjectDefault : IInsertObject
+    /// <summary>
+    ///  增删改批量操作
+    /// </summary>
+	public class CRUDObjectDefault : ICRUDObject
 	{
 
 		IConfiguration _configuration;
-		public InsertObjectDefault(IConfiguration configuration)
+		public CRUDObjectDefault(IConfiguration configuration)
 		{
 			_configuration = configuration;
 		}
@@ -38,13 +41,7 @@ namespace Peter.ExcelOperation
 				sqlCopy.NotifyAfter = option.NotifyAfter;
 
 				// Set up the column mappings by name.
-				if (option.ColumnMapping != null && option.ColumnMapping.Count > 0)
-				{
-					foreach (var item in option.ColumnMapping)
-					{
-						sqlCopy.ColumnMappings.Add(new SqlBulkCopyColumnMapping(item.Key, item.Value));
-					}
-				}
+                sqlCopy.AddColumnMappings(option.ColumnMapping);
 				try
 				{
 					// Write from the source to the destination.
@@ -60,6 +57,8 @@ namespace Peter.ExcelOperation
 				}
 			}
 		}
+
+
 
 		public delegate void SqlRowsCopied(object sender, SqlRowsCopiedEventArgs e);
 		public event SqlRowsCopied RowsCopied;

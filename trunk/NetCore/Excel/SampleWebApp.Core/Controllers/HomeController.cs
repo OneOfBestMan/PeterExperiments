@@ -21,10 +21,10 @@ namespace SampleWebApp.Core.Controllers
 		private const string XlsxContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 		private readonly IHostingEnvironment _hostingEnvironment;
 		private readonly IImportExcel _importer;
-		private readonly IInsertObject _insertObject;
+		private readonly ICRUDObject _insertObject;
 		private readonly IConfiguration _configuration;
 
-		public HomeController(IConfiguration configuration, IHostingEnvironment hostingEnvironment, IImportExcel importer, IInsertObject insertObject)
+		public HomeController(IConfiguration configuration, IHostingEnvironment hostingEnvironment, IImportExcel importer, ICRUDObject insertObject)
 		{
 			_configuration = configuration;
 			_hostingEnvironment = hostingEnvironment;

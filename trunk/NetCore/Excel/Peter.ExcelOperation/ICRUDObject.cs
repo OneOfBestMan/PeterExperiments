@@ -2,9 +2,9 @@
 
 namespace Peter.ExcelOperation
 {
-	public interface IInsertObject
+	public interface ICRUDObject
 	{
-		event InsertObjectDefault.SqlRowsCopied RowsCopied;
+		event CRUDObjectDefault.SqlRowsCopied RowsCopied;
 
 		void Insert<T>(DataTable table, CRUDOption option) where T : class;
 	}

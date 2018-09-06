@@ -1,0 +1,70 @@
+DevTools listening on ws://127.0.0.1:65096/devtools/browser/82cd91c5-f647-4866-bbea-183fc6c07b32
+获取:起始链接,level=1,url=https://www.youngmaker.com/Home/Courses/curriculum
+获取:课程,level=2,url=https://www.youngmaker.com//Home/Courses/curriculum
+可能没有连接了!
+获取:全部,level=2,url=https://www.youngmaker.com//home/courses/curriculum.html
+可能没有连接了!
+获取:Scratch编程,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/1.html
+可能没有连接了!
+获取:机器人,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/2.html
+可能没有连接了!
+获取:木工,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/4.html
+可能没有连接了!
+获取:3D打印笔,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/3.html
+可能没有连接了!
+获取:虚拟机器人,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/5.html
+可能没有连接了!
+获取:小机床,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/7.html
+可能没有连接了!
+获取:信息技术,level=2,url=https://www.youngmaker.com//home/courses/curriculum/id/9.html
+可能没有连接了!
+获取: Scratch编程学习2018,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/292/classroomid/29/ccid/14.html
+可能没有连接了!
+获取: Scratch竞赛指导视频,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/177/classroomid/162/ccid/14.html
+可能没有连接了!
+获取: Arduino机器人创客教育课程（I级）,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/602/classroomid/512/ccid/14.html
+可能没有连接了!
+获取: Arduino竞赛基础指导课程,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/178/classroomid/63/ccid/14.html
+可能没有连接了!
+获取: MakeMaker开源Arduino快速学习,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/272/classroomid/123/ccid/14.html
+可能没有连接了!
+获取: Arduino机器人课程,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/110/classroomid/38/ccid/14.html
+可能没有连接了!
+获取: 虚拟机器人课程,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/180/classroomid/61/ccid/14.html
+可能没有连接了!
+获取:2018年深圳市信息技术同课同构公开课,level=2,url=https://www.youngmaker.com//home/courses/sort
+可能没有连接了!
+获取: 陪孩子一起学Arduino,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/1506/classroomid/684/ccid/14.html
+可能没有连接了!
+获取: 陪孩子一起学Python,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/1507/classroomid/685/ccid/14.html
+可能没有连接了!
+获取: 趣味3D打印笔,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/338/classroomid/144/ccid/14.html
+可能没有连接了!
+获取: 小机床,level=2,url=https://www.youngmaker.com//home/courses/catalog/id/1482/classroomid/65/ccid/14.html
+可能没有连接了!
+获取:2,level=2,url=https://www.youngmaker.com//home/courses/curriculum/p/2.html
+可能没有连接了!
+起始链接:https://www.youngmaker.com/Home/Courses/curriculum
+课程:https://www.youngmaker.com//Home/Courses/curriculum
+全部:https://www.youngmaker.com//home/courses/curriculum.html
+Scratch编程:https://www.youngmaker.com//home/courses/curriculum/id/1.html
+机器人:https://www.youngmaker.com//home/courses/curriculum/id/2.html
+木工:https://www.youngmaker.com//home/courses/curriculum/id/4.html
+3D打印笔:https://www.youngmaker.com//home/courses/curriculum/id/3.html
+虚拟机器人:https://www.youngmaker.com//home/courses/curriculum/id/5.html
+小机床:https://www.youngmaker.com//home/courses/curriculum/id/7.html
+信息技术:https://www.youngmaker.com//home/courses/curriculum/id/9.html
+ Scratch编程学习2018:https://www.youngmaker.com//home/courses/catalog/id/292/classroomid/29/ccid/14.html
+ Scratch竞赛指导视频:https://www.youngmaker.com//home/courses/catalog/id/177/classroomid/162/ccid/14.html
+ Arduino机器人创客教育课程（I级）:https://www.youngmaker.com//home/courses/catalog/id/602/classroomid/512/ccid/14.html
+ Arduino竞赛基础指导课程:https://www.youngmaker.com//home/courses/catalog/id/178/classroomid/63/ccid/14.html
+ MakeMaker开源Arduino快速学习:https://www.youngmaker.com//home/courses/catalog/id/272/classroomid/123/ccid/14.html
+ Arduino机器人课程:https://www.youngmaker.com//home/courses/catalog/id/110/classroomid/38/ccid/14.html
+ 虚拟机器人课程:https://www.youngmaker.com//home/courses/catalog/id/180/classroomid/61/ccid/14.html
+2018年深圳市信息技术同课同构公开课:https://www.youngmaker.com//home/courses/sort
+ 陪孩子一起学Arduino:https://www.youngmaker.com//home/courses/catalog/id/1506/classroomid/684/ccid/14.html
+ 陪孩子一起学Python:https://www.youngmaker.com//home/courses/catalog/id/1507/classroomid/685/ccid/14.html
+ 趣味3D打印笔:https://www.youngmaker.com//home/courses/catalog/id/338/classroomid/144/ccid/14.html
+ 小机床:https://www.youngmaker.com//home/courses/catalog/id/1482/classroomid/65/ccid/14.html
+2:https://www.youngmaker.com//home/courses/curriculum/p/2.html
+Press any key to continue . . .
