@@ -31,7 +31,12 @@ class BaseRequest(object):
                  anchors[key]=intourl
           return anchors;
 
-      def downloadUrlsFromPage(self,html,req_cookies):
+      def downloadFromUrls(self,url,req_cookies):
+          print("下载链接："+url)
+          html=self.getPage(url,req_cookies)
+          self.downloadFromPage(html,req_cookies)
+
+      def _downloadFromPage(self,html,req_cookies):
           reA = 'src="//([^"]+)"'
           downloadurls = re.findall(reA,html, re.I|re.S|re.M)
           #dr = re.compile(r'<[^>]+>',re.S)
@@ -41,12 +46,12 @@ class BaseRequest(object):
               #key=dr.sub('',url[1]).replace("\r","").replace("\n","")
               name=os.path.basename(url)
               if  'http' in url[0]:
-                   self.download(dir,name,url,req_cookies)
+                   self._download(dir,name,url,req_cookies)
               else:
                   url=self.taskOption.baseUrl+ url[0]
-                  self.download(dir,name,url,req_cookies)
+                  self._download(dir,name,url,req_cookies)
 
-      def download(self,dir,filename, url,req_cookies):
+      def _download(self,dir,filename, url,req_cookies):
           try:
              r=requests.get(url)
              with open(dir+'/'+filename,"wb") as f:

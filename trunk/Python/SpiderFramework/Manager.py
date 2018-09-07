@@ -5,11 +5,12 @@ import BaseRequest
 import TaskOption
 import time
 class UrlDto(object):
-      def __init__(self,name,url,level,isVisited):
+      def __init__(self,name,url,level,isVisited,isDownload):
           self.name=name
           self.url=url
           self.level=level
           self.isVisited=isVisited
+          self.isDownload=isDownload
 
 class Manager(object):
       
@@ -47,7 +48,7 @@ class Manager(object):
           dtos=[]
           if len(urls) >0  and urldto.level < self.option.maxLevel:
              for k,v in urls.items():
-                 dto=UrlDto(k,v,urldto.level+1,False)
+                 dto=UrlDto(k,v,urldto.level+1,False,False)
                  dtos.append(dto)
              self.AddUrls(dtos)
 

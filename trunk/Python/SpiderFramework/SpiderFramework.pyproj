@@ -48,7 +48,7 @@
     <Compile Include="TaskOption.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TestGetUrls.py">
+    <Compile Include="TaskManager.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
