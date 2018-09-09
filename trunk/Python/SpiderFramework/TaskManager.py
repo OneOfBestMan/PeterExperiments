@@ -19,13 +19,13 @@ class TaskManager(object):
                  #'Cookie': self.cookies
                }
       baseUrl="https://www.youngmaker.com"
-      urlBegin="https://www.youngmaker.com/home/courses/study/catid/292/capid/7255/classroomid/29/sectionid/2100/ccid/14.html"
+      urlBegin="https://www.youngmaker.com/home/courses/study/catid/1507/capid/50774/classroomid/685/sectionid/7201/ccid/14.html"
       
       #reA = '<a.*?href="(.+?)".*?>(.+?)</a>'
       reA = '<a.*?href="([^\"]*)".*?>(.*?)</a>'
       #reDownload = 'src="(.*?\.mp4)"'
       reDownload = 'src="//([^"]+)"'
-      fetchUrlMustContain="classroomid/29/ccid/14.html"
+      fetchUrlMustContain="classroomid"
       option = TaskOption.TaskOption(baseUrl, baseUrl,urlBegin,"mp4", 5, headers,"",reA,reDownload,fetchUrlMustContain)
       #cookie_dict=dict()
 
