@@ -8,19 +8,23 @@ import datetime
 
 class BaseRequest(object):
       
-      def __init__(self,taskOption):
+      def __init__(self,taskOption,cookie):
           self.taskOption=taskOption
+          self.cookie=cookie
+          self.sessionRequest=requests.Session()
 
-      def getPage(self,url,req_cookies):
-          content=requests.get(url=url, headers=self.taskOption.headers, cookies=req_cookies)
+      def getPage(self,url):
+          content=self.sessionRequest.get(url=url, headers=self.taskOption.headers, cookies=self.cookie)
           return content.text
 
       def getSearchUrlsFromPage(self,html):
-          reA = '<a.*?href="([^\"]*)".*?>(.*?)</a>'
+          reA = self.taskOption.reRetchUrls
           urls=re.findall(reA,html, re.I|re.S|re.M)
           anchors= dict()
           dr = re.compile(r'<[^>]+>',re.S)
           for url in urls:
+              if self.taskOption.fetchUrlMustContain  not in url[0]:
+                 continue
               key=dr.sub('',url[1]).replace("\r","").replace("\n","")
               intourl=''
               if  'http' in url[0]:
@@ -28,38 +32,34 @@ class BaseRequest(object):
               else:
                   intourl=self.taskOption.baseUrl+ url[0]
               if intourl not in anchors.values():
-                 anchors[key]=intourl
+                 anchors[key]=intourl.replace(" ", "")
           return anchors;
 
-      def downloadFromUrls(self,url,req_cookies):
-          print("下载链接："+url)
-          html=self.getPage(url,req_cookies)
-          self.downloadFromPage(html,req_cookies)
+      def downloadFromUrls(self,url,dir):
+          html=self.getPage(url)
+          self._downloadFromPage(html,dir)
 
-      def _downloadFromPage(self,html,req_cookies):
-          reA = 'src="//([^"]+)"'
+      def _downloadFromPage(self,html,dir):
+          reA =self.taskOption.reFiles
           downloadurls = re.findall(reA,html, re.I|re.S|re.M)
-          #dr = re.compile(r'<[^>]+>',re.S)
-          dir=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-          os.mkdir(dir) 
           for url in downloadurls:
-              #key=dr.sub('',url[1]).replace("\r","").replace("\n","")
+              url=url.replace("\r","").replace("\n","").replace("\t","")
               name=os.path.basename(url)
-              if  'http' in url[0]:
-                   self._download(dir,name,url,req_cookies)
-              else:
-                  url=self.taskOption.baseUrl+ url[0]
-                  self._download(dir,name,url,req_cookies)
+              if 'http' not in url and 'com' not in url:
+                   url=self.taskOption.baseUrl+ url
+              if 'http' not in url:
+                   url="https://"+url
+              self._download(dir,name,url)
 
-      def _download(self,dir,filename, url,req_cookies):
+      def _download(self,dir,filename, url):
           try:
-             r=requests.get(url)
+             r=self.sessionRequest.get(url)
              with open(dir+'/'+filename,"wb") as f:
                  f.write(r.content)
-                 print("下载文件"+filename)
+                 print("下载文件:"+filename)
              f.close()
-          except Exception:# 异常基类
-                 print("可能没有文件下载 !")
+          except Exception as e:# 异常基类
+                 print("下载文件出错,"+e.reason)
 
 
 

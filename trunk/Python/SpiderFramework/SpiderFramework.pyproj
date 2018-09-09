@@ -27,9 +27,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
-    <Compile Include="BaseHelper.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BaseRequest.py">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +37,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Manager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\DictListTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\FilterListTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\requestsCoocieExpiredTest.py" />
+    <Compile Include="test\requestsTest.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="__init__.py">
@@ -60,6 +67,7 @@
     <Content Include="sln.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="test\" />
     <Folder Include="refhtmls\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />

@@ -4,14 +4,21 @@
 #   访问的顶级URL
 
 class TaskOption(object):
-      def __init__(self, baseUrl, loginUrl,beginUrl,fileType, maxLevel, headers,reTargetUrl):
+      def __init__(self, baseUrl, loginUrl,beginUrl,fileType, maxLevel, headers,reTargetUrl,reRetchUrls,reFiles,fetchUrlMustContain):
+        #url
         self.baseUrl = baseUrl
         self.loginUrl= loginUrl
         self.beginUrl=beginUrl
+        self.headers= headers
+
+
+        # 搜索的文件类型
         self.fileType = fileType
         self.maxLevel = maxLevel
-
-        self.headers= headers
+        self.reRetchUrls=reRetchUrls
+        self.fetchUrlMustContain=fetchUrlMustContain
+        self.reFiles=reFiles
         self.reTargetUrl=reTargetUrl
+
 
  

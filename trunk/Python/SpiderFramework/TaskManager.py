@@ -6,6 +6,8 @@ import BaseRequest
 import time
 import os
 import threading
+import datetime
+from globalData import *
 
 class TaskManager(object):
       
@@ -16,55 +18,58 @@ class TaskManager(object):
                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
                  #'Cookie': self.cookies
                }
-      option = TaskOption.TaskOption("https://www.youngmaker.com/", "https://www.youngmaker.com/","https://www.youngmaker.com/home/courses/study/catid/292/capid/7255/classroomid/29/sectionid/2100/ccid/14.html","mp4", 5, headers,"")
-      cookie_dict=dict()
+      baseUrl="https://www.youngmaker.com"
+      urlBegin="https://www.youngmaker.com/home/courses/study/catid/292/capid/7255/classroomid/29/sectionid/2100/ccid/14.html"
+      
+      #reA = '<a.*?href="(.+?)".*?>(.+?)</a>'
+      reA = '<a.*?href="([^\"]*)".*?>(.*?)</a>'
+      #reDownload = 'src="(.*?\.mp4)"'
+      reDownload = 'src="//([^"]+)"'
+      fetchUrlMustContain="classroomid/29/ccid/14.html"
+      option = TaskOption.TaskOption(baseUrl, baseUrl,urlBegin,"mp4", 5, headers,"",reA,reDownload,fetchUrlMustContain)
+      #cookie_dict=dict()
 
 
       def startSplider(self):
           login_name = '13501884996'
           login_password = 'youngmaker22'
           provider=CockieProvider.CockieProvider(TaskManager.option)
-          cookie_dict=provider.login(login_name,login_password)
+          cookie=provider.login(login_name,login_password)
 
-          manager=Manager.Manager(cookie_dict,TaskManager.option)
-
-          fetchUrlThread =threading.Thread(target=self.getAllUrlsThread,args=(manager,))
+          fetchUrlThread =threading.Thread(target=self.getAllUrlsThread,args=(cookie,))
           fetchUrlThread.start()
-
-          downloadThread =threading.Thread(target=self.download,args=(manager,cookie_dict))
+          
+          dir=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+          os.mkdir(dir) 
+          request=BaseRequest.BaseRequest(TaskManager.option,cookie)
+          downloadThread =threading.Thread(target=self.download,args=(request,dir))
           downloadThread.start()
 
-          #fetchUrlThread.join()
-          #downloadThread.join()
-          #self.getAllUrlsThread(manager)
-          #self.download(manager,cookie_dict)
-
-      def getAllUrlsThread(self,manager):
+      def getAllUrlsThread(self,cookie):
           print("获取链接线程开始")
+          manager=Manager.Manager(cookie,TaskManager.option)
           dto=Manager.UrlDto('起始链接',TaskManager.option.beginUrl,1,False,False)
           manager.AddUrl(dto)
 
-      def download(self,manager,cookie):
+      def download(self,request,dir):
           print("下载线程开始")
-          request=BaseRequest.BaseRequest(TaskManager.option)
-          dtosfiltered=filter(lambda d:d.isDownload==False,manager.Dtos)
-          dtosToLoop=list(dtosfiltered)
           try:
-              while dtosToLoop and len(dtosToLoop) >0:
-                    for dto in dtosToLoop:
+              while glo_dtos and len(glo_dtos) >0:
+                    for dto in glo_dtos:
+                        if dto.isDownload==True:
+                           continue
                         dto.isDownload=True
-                        print("下载文件："+dto.name+"="+dto.url+"，level="+str(dto.level))
-                        request.downloadFromUrls(dto.url,cookie)
-                    time.sleep(1)
-                    dtosfiltered=filter(lambda d:d.isDownload==False,manager.Dtos)
-                    dtosToLoop=list(dtosfiltered)
-              print("可能没有下载连接了!")
+                        print("开始下载文件："+dto.name+"="+dto.url+"，level="+str(dto.level))
+                        request.downloadFromUrls(dto.url,dir)
+                        time.sleep(1)
+              print("正常，可能没有下载连接了!")
               time.sleep(3)
-              self.download(manager,cookie)
-          except Exception:
-                print("可能没有下载连接了!")
-                time.sleep(3)
-                self.download(manager,cookie)
+              self.download(request,dir)
+          except Exception as e:
+                 print("出错，可能没有下载连接了,"+repr(e))
+                 time.sleep(3)
+                 self.download(request,dir)
+
 
 
 
