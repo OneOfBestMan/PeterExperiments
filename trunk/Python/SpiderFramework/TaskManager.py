@@ -21,7 +21,7 @@ class TaskManager(object):
                }
 
       baseUrl="https://www.youngmaker.com"
-      urlBegin="https://www.youngmaker.com/home/courses/study/catid/1507/capid/50774/classroomid/685/sectionid/7201/ccid/14.html"
+      urlBegin="https://www.youngmaker.com/home/Courses/study/catid/272/capid/6796/sectionid/undefined/classroomid/123/ccid/14.html"
       
       #reA = '<a.*?href="(.+?)".*?>(.+?)</a>'
       reA = '<a.*?href="([^\"]*)".*?>(.*?)</a>'
@@ -61,7 +61,7 @@ class TaskManager(object):
                            continue
                         dto.isDownload=True
                         print("开始下载文件："+dto.name+"="+dto.url+"，level="+str(dto.level))
-                        request.downloadFromUrls(dto.url,dir)
+                        request.downloadFromUrls(dto,dir)
                         time.sleep(1)
               print("正常，可能没有下载连接了!")
               time.sleep(3)

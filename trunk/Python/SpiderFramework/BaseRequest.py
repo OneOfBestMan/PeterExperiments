@@ -35,11 +35,13 @@ class BaseRequest(object):
                  anchors[key]=intourl.replace(" ", "")
           return anchors;
 
-      def downloadFromUrls(self,url,dir):
-          html=self.getPage(url)
-          self._downloadFromPage(html,dir)
+      #dto一个代表需要搜索的对象
+      #这个对象的名称，可以给由这个对象找到的页面中的目标元素的父名称
+      def downloadFromUrls(self,dto,dir):
+          html=self.getPage(dto.url)
+          self._downloadFromPage(html,dto,dir)
 
-      def _downloadFromPage(self,html,dir):
+      def _downloadFromPage(self,html,dto,dir):
           reA =self.taskOption.reFiles
           downloadurls = re.findall(reA,html, re.I|re.S|re.M)
           for url in downloadurls:
@@ -49,14 +51,14 @@ class BaseRequest(object):
                    url=self.taskOption.baseUrl+ url
               if 'http' not in url:
                    url="https://"+url
-              self._download(dir,name,url)
+              self._download(dto,dir,name,url)
 
-      def _download(self,dir,filename, url):
+      def _download(self,dto,dir,filename, url):
           try:
              r=self.sessionRequest.get(url)
-             with open(dir+'/'+filename,"wb") as f:
+             with open(dir+'/'+dto.name +"_"+filename,"wb") as f:
                  f.write(r.content)
-                 print("下载文件:"+filename)
+                 print("下载文件:"+dto.name+"_"+filename)
              f.close()
           except Exception as e:# 异常基类
                  print("下载文件出错,"+e.reason)

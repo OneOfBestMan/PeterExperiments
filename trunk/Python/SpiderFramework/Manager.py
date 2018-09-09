@@ -25,9 +25,9 @@ class Manager(object):
 
       def AddUrl(self,urlDto):
           if urlDto.url in glo_urls:
-               print(urlDto.url+"已存在")
+               print("已存在"+urlDto.url)
           else:
-               print(urlDto.url+"添加")
+               print("添加"+urlDto.url)
                glo_urls.append(urlDto.url)
                glo_dtos.append(urlDto)
                urlDto.isVisited=True
