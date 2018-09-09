@@ -20,5 +20,4 @@ class TaskOption(object):
         self.reFiles=reFiles
         self.reTargetUrl=reTargetUrl
 
-
  

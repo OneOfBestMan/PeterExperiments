@@ -1,9 +1,11 @@
 #全局管理类
+
 from globalData import *
 import requests
 import BaseRequest
 import TaskOption
 import time
+
 class UrlDto(object):
       def __init__(self,name,url,level,isVisited,isDownload):
           self.name=name
@@ -11,7 +13,6 @@ class UrlDto(object):
           self.level=level
           self.isVisited=isVisited
           self.isDownload=isDownload
-
 
 class Manager(object):
       

@@ -9,6 +9,7 @@ import threading
 import datetime
 from globalData import *
 
+
 class TaskManager(object):
       
       headers= {
@@ -18,6 +19,7 @@ class TaskManager(object):
                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
                  #'Cookie': self.cookies
                }
+
       baseUrl="https://www.youngmaker.com"
       urlBegin="https://www.youngmaker.com/home/courses/study/catid/1507/capid/50774/classroomid/685/sectionid/7201/ccid/14.html"
       
@@ -27,7 +29,6 @@ class TaskManager(object):
       reDownload = 'src="//([^"]+)"'
       fetchUrlMustContain="classroomid"
       option = TaskOption.TaskOption(baseUrl, baseUrl,urlBegin,"mp4", 5, headers,"",reA,reDownload,fetchUrlMustContain)
-      #cookie_dict=dict()
 
 
       def startSplider(self):
@@ -70,6 +71,10 @@ class TaskManager(object):
                  time.sleep(3)
                  self.download(request,dir)
 
+
+
+ 
+ 
 
 
 
