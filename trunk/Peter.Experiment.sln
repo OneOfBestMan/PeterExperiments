@@ -77,6 +77,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebApp.Core", "NetCor
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SpiderFramework", "Python\SpiderFramework\SpiderFramework.pyproj", "{FA48A348-17E8-42D5-9FE3-898BDFC85DC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuth", "JwtAuth\JwtAuth.csproj", "{15F85F81-98AB-4A5E-95AC-5BA055E72013}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -315,6 +317,14 @@ Global
 		{FA48A348-17E8-42D5-9FE3-898BDFC85DC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA48A348-17E8-42D5-9FE3-898BDFC85DC1}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA48A348-17E8-42D5-9FE3-898BDFC85DC1}.Release|x86.Build.0 = Release|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Debug|x86.Build.0 = Debug|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Release|x86.ActiveCfg = Release|Any CPU
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -354,6 +364,7 @@ Global
 		{536F0A5D-7733-431D-9DB1-D5FA5C17C1AB} = {A76BC047-D514-46C8-9EE9-6C94A5BF8E5E}
 		{ECAEEC5B-29CB-46E9-B501-CB3FECE5BF29} = {A76BC047-D514-46C8-9EE9-6C94A5BF8E5E}
 		{FA48A348-17E8-42D5-9FE3-898BDFC85DC1} = {49C9A4E7-6F71-499F-BDC8-51F4AC6F2182}
+		{15F85F81-98AB-4A5E-95AC-5BA055E72013} = {2DFAC018-9B3C-4132-BCE4-3CC0F378402B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99DA3533-8288-452D-8587-27F0BBC96682}

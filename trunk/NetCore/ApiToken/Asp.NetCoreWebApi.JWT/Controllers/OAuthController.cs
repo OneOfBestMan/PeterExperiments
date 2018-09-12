@@ -45,7 +45,7 @@ namespace Asp.Net_Core_WebApi.JWT.Controllers
 				};
 
 				var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["JwtSecurityKey"]));
-				var expires = DateTime.Now.AddDays(28);//
+				var expires = DateTime.Now.AddMinutes(1);//
 				var token = new JwtSecurityToken(
 							issuer: Configuration["issuer"],
 							audience: Configuration["audience"],
