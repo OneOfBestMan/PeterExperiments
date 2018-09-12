@@ -19,7 +19,7 @@ namespace SampleWebApp.Core
 			//services.AddSingleton(IConfigurationRoot, Configure);
 			//services.AddSingleton<IConfiguration>(Configuration);
 			services.AddScoped<IImportExcel, ImportExcelDefault>();
-			services.AddScoped<ICRUDObject, InsertObjectDefault>();
+			services.AddScoped<ICRUDObject, CRUDObjectDefault>();
 			services.AddMvc();
 			
 		}

@@ -1,28 +1,27 @@
 ﻿<fieldset>
-   <legend>Basic usage</legend>
+    <legend>Basic usage</legend>
     <ul>
         <li>
-            <a asp-action="InMemoryReport" asp-controller="Home">Create an in-memory report</a>
-        </li>
-        <li>
-            <a asp-action="FileReport" asp-controller="Home">Create a file report</a>
-        </li>
-        <li>
-            <a asp-action="DataTableReport" asp-controller="Home">Create a DataTable report</a>
-        </li>
-        <li>
-            <a asp-action="ReadFile" asp-controller="Home">Read report.xlsx file</a>
+            <a asp-action="Download" asp-controller="Home">下载测试</a>
         </li>
     </ul>
 </fieldset>
 
 <fieldset style="margin-top: 15px">
-   <legend>Upload an xlsx file</legend>
-   <form method="post"
-         asp-action="FileUpload"
-         asp-controller="Home"
-         enctype="multipart/form-data">
-      <input type="file" name="file"  />
-      <input type="submit" value="Upload" />
-   </form>
+    <legend>Upload an xlsx file</legend>
+    <form method="post"
+          asp-action="FileInsert"
+          asp-controller="Home"
+          enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
+
+    <form method="post"
+          asp-action="FileUpdate"
+          asp-controller="Home"
+          enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
 </fieldset>
