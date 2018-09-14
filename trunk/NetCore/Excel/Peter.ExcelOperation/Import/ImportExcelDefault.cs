@@ -62,7 +62,7 @@ namespace Peter.ExcelOperation
 
 				using (var package = new ExcelPackage(memoryStream))
 				{
-					var worksheet = package.Workbook.Worksheets[0]; // Tip: To access the first worksheet, try index 1, not 0
+					var worksheet = package.Workbook.Worksheets[1]; // Tip: To access the first worksheet, try index 1, not 0
 
 					return worksheet.ToDataTable();
 					//return worksheet;

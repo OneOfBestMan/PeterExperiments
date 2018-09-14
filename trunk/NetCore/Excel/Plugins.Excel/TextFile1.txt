@@ -1,0 +1,6 @@
+﻿excel import
+1: upload the file to server
+2: valid the file accouding to the rules
+3: fetch the data,make sql strings(1 directly insert into database 2 check and use business logic to get the sqls(insert or update))
+4: execute the sql in the database
+

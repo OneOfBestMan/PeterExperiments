@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-namespace Peter.ExcelOperation
+namespace LC.SDK.Plugins.Excel
 {
     public static class SqlBulkCopyExtention
     {
@@ -21,7 +21,7 @@ namespace Peter.ExcelOperation
             {
                 foreach (var item in mapping)
                 {
-                    if (item.Key=="Id")
+                    if (item.Key == "Id")
                     {
                         continue;
                     }

@@ -1,0 +1,101 @@
+﻿CREATE TYPE [dbo].[ExcelImportType] AS TABLE(
+	[Id] [int] NOT NULL,
+	[Name] [nvarchar](200) NOT NULL,
+	[Age] [int] NOT NULL,
+	[RAName] [nvarchar](255) NULL,
+	[RAAdress] [nvarchar](255) NULL,
+	[CompletionYear] [int] NULL,
+	[MainArea] [float] NULL,
+	[IsHaveElevator] [nvarchar](50) NULL,
+	[Floors] [int] NULL,
+	[PropertyLevel] [nvarchar](255) NULL,
+	[MainAreaBasePrice] [float] NULL,
+	[RAPriceMemo] [nvarchar](max) NULL,
+	[ValuePoint] [datetime] NULL
+)
+GO
+
+ALTER PROCEDURE [dbo].[Update_ExcelImport]
+(
+      @table ExcelImportType READONLY
+)
+
+AS
+BEGIN
+     SET NOCOUNT ON;
+ 
+      MERGE INTO ExcelImport c1
+      USING @table c2
+      ON c1.Id=c2.Id
+      WHEN MATCHED THEN
+      UPDATE SET c1.Name = c2.Name
+            ,c1.Age = c2.Age
+			,c1.RAName=c2.RAName,
+			c1.RAAdress=c2.RAAdress,
+			c1.CompletionYear=c2.CompletionYear,
+			c1.MainArea=c2.MainArea,
+			c1.IsHaveElevator=c2.IsHaveElevator,
+			c1.Floors=c2.Floors,
+			c1.PropertyLevel=c2.PropertyLevel,
+			c1.MainAreaBasePrice=c2.MainAreaBasePrice,
+			c1.RAPriceMemo=c2.RAPriceMemo,
+			c1.ValuePoint=c2.ValuePoint
+      WHEN NOT MATCHED THEN
+      INSERT([Name],[Age],[RAName],[RAAdress],[CompletionYear],[MainArea],[IsHaveElevator],[Floors],[PropertyLevel],[MainAreaBasePrice],[RAPriceMemo],[ValuePoint])
+	   VALUES(c2.Name,c2.Age,c2.RAName,c2.RAAdress,c2.CompletionYear,
+					c2.MainArea,c2.IsHaveElevator,c2.Floors,c2.PropertyLevel,
+					c2.MainAreaBasePrice,c2.RAPriceMemo,c2.ValuePoint);
+END
+
+go
+
+CREATE TABLE [dbo].[ExcelImport](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](200) NOT NULL,
+	[Age] [int] NOT NULL,
+	[RAName] [nvarchar](255) NULL,
+	[RAAdress] [nvarchar](255) NULL,
+	[CompletionYear] [int] NULL,
+	[MainArea] [float] NULL,
+	[IsHaveElevator] [nvarchar](50) NULL,
+	[Floors] [int] NULL,
+	[PropertyLevel] [nvarchar](255) NULL,
+	[MainAreaBasePrice] [float] NULL,
+	[RAPriceMemo] [nvarchar](max) NULL,
+	[ValuePoint] [datetime] NULL,
+ CONSTRAINT [PK_ExcelImport] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'小区名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'RAName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'小区地址' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'RAAdress'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'竣工年份' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'CompletionYear'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主力面积' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'MainArea'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'有无电梯' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'IsHaveElevator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'地上层数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'Floors'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'物业档次' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'PropertyLevel'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主力面积基价' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'MainAreaBasePrice'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'小区价格说明' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'RAPriceMemo'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'价值时点' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ExcelImport', @level2type=N'COLUMN',@level2name=N'ValuePoint'
+GO
