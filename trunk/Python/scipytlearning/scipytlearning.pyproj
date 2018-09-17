@@ -3,10 +3,11 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>fa48a348-17e8-42d5-9fe3-898bdfc85dc1</ProjectGuid>
+    <ProjectGuid>a3cb5cd9-85c1-4bbe-a5fd-ded9bcef82b2</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
-    <StartupFile>app.py</StartupFile>
+    <ProjectTypeGuids>{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -14,10 +15,9 @@
     <WebBrowserUrl>http://localhost</WebBrowserUrl>
     <OutputPath>.</OutputPath>
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
-    <Name>SpiderFramework</Name>
-    <RootNamespace>SpiderFramework</RootNamespace>
-    <InterpreterId>
-    </InterpreterId>
+    <Name>scipytlearning</Name>
+    <RootNamespace>scipytlearning</RootNamespace>
+    <InterpreterId>Global|ContinuumAnalytics|Anaconda36-64</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,49 +28,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.py" />
-    <Compile Include="BaseRequest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CockieProvider.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="globalData.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Manager.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="test\DictListTest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="test\FilterListTest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="test\requestsCoocieExpiredTest.py" />
-    <Compile Include="test\requestsTest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TaskOption.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TaskManager.py">
+    <Compile Include="nihe.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="refhtmls\TextFile1.txt" />
-    <Content Include="refhtmls\TextFile2.txt" />
-    <Content Include="refhtmls\WebPage1.html" />
-    <Content Include="requirements.txt" />
-    <Content Include="sln.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="test\" />
-    <Folder Include="refhtmls\" />
+    <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda36-64" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

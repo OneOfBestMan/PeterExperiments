@@ -119,7 +119,7 @@ namespace SampleWebApp.Core.Controllers
 
 
         //[DisableRequestSizeLimit]
-        public async Task<IActionResult> FileInsert(IFormFile file)
+        public async Task<IActionResult> FileInsert(IFormFile file,string uploadType)
         {
             #region testw
             if (file == null || file.Length == 0)
