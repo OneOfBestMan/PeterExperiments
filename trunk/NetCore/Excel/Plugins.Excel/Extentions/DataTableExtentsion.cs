@@ -47,15 +47,15 @@ namespace LC.SDK.Plugins.Excel
         {
             if (table == null) throw new ArgumentNullException("table");
             DataColumnCollection columns = table.Columns;
-            DataTable _table = new DataTable(table.TableName);
+            //DataTable _table = new DataTable(table.TableName);
             foreach (var item in columnAll)
             {
                 if (!table.Columns.Contains(item.ColumnName))
                 {
-                    _table.Columns.Add(item.ColumnName);
+                    table.Columns.Add(item.ColumnName);
                 }
             }
-            return _table;
+            return table;
         }
     }
 }

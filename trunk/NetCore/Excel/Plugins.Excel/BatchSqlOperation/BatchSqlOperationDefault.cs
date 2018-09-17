@@ -74,6 +74,11 @@ namespace LC.SDK.Plugins.Excel
 
                 // Set up the column mappings by name.
                 sqlCopy.AddValueToValueMappings(option.ColumnMapping);
+                if (option.ChiefId>0)
+                {
+                    table.Columns.Add("ChiefId", typeof(string), option.ChiefId.ToString());
+                    sqlCopy.ColumnMappings.Add(new SqlBulkCopyColumnMapping("ChiefId","ChiefId"));
+                }
                 try
                 {
                     // Write from the source to the destination.
@@ -106,6 +111,10 @@ namespace LC.SDK.Plugins.Excel
                 throw new Exception("参数option的属性SPName必须是一个数据库存储过程用来更新表");
             }
             var tempTable = table.ToTable(option.AllowedAllColumns);
+            if (option.ChiefId > 0)
+            {
+                table.Columns.Add("ChiefId", typeof(string), option.ChiefId.ToString());
+            }
             using (SqlConnection con = new SqlConnection(option.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(option.SPName))

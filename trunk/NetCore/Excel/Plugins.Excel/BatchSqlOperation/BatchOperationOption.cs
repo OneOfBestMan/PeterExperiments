@@ -7,6 +7,8 @@ namespace LC.SDK.Plugins.Excel
 
         public string ConnectionString { get; set; }
 
+        public int ChiefId { get; set; }
+
         #region Insert
         /// <summary>
         /// Insert必填
