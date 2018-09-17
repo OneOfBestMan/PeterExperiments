@@ -270,7 +270,9 @@ public void GenerateUpdate(ColumnSchema column, int indentLevel, bool isFirst, b
         return;
     
 	GenerateIndent(indentLevel);
-	Response.Write("c1."+column.Name+" = c2."+column.Name);
+	//Response.Write("c1."+column.Name+" = c2."+column.Name);
+    Response.Write(string.Format("c1.{0}=case when c2.{0} is null or c2.{0}='' then c1.{0} else c2.{0} end",column.Name));
+    //case when c2.ProjectName is null or c2.ProjectName='' then c1.ProjectName else c2.ProjectName end ,
 	if (!isLast) Response.Write(",");
 	if (indentLevel >= 0)
 	{
@@ -383,9 +385,20 @@ public List<ColumnSchema> FilterReadOnlyAndExcludedColumns(IList<ColumnSchema> c
 
 private Regex excludedColumnRegex = null;
 
+/// <summary>
+/// OperatorType int,OperationTime datetime,CreationTime datetime,ChiefId int 过滤掉
+/// </summary>
+/// <param name="column"></param>
+/// <returns></returns>
 public bool ColumnIsExcluded(ColumnSchema column)
 {
 	if (column.IsPrimaryKeyMember) return false;
+        
+     if (column.Name=="OperatorType" || column.Name=="OperationTime" || column.Name=="CreationTime")
+     {
+         return true;
+     }
+    
 	
 	if (excludedColumnRegex == null)
 	{
