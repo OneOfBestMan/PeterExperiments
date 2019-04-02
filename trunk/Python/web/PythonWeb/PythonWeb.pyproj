@@ -3,10 +3,11 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>b8527cde-e39f-4116-8260-85f23ad338c6</ProjectGuid>
+    <ProjectGuid>e91e4b40-df98-4ffa-9509-21643a3e2ec3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -14,10 +15,8 @@
     <WebBrowserUrl>http://localhost</WebBrowserUrl>
     <OutputPath>.</OutputPath>
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
-    <Name>my_spider58</Name>
-    <RootNamespace>my_spider58</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.6</InterpreterId>
-    <IsWindowsApplication>False</IsWindowsApplication>
+    <Name>PythonWeb</Name>
+    <RootNamespace>PythonWeb</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,40 +27,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda36-64" />
-    <InterpreterReference Include="Global|PythonCore|3.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="data\" />
-    <Folder Include="data\__pycache__\" />
-    <Folder Include="login\" />
-    <Folder Include="Nyspider\" />
-    <Folder Include="result\" />
-    <Folder Include="test\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="data\anjuke.py" />
-    <Compile Include="data\beike.py" />
-    <Compile Include="data\common.py" />
-    <Compile Include="data\ganji.py" />
-    <Compile Include="data\lianjia.py" />
-    <Compile Include="data\save.py" />
-    <Compile Include="data\tongcheng.py" />
-    <Compile Include="data\__init__.py" />
-    <Compile Include="login\login_58city.py" />
-    <Compile Include="main.py" />
-    <Compile Include="Nyspider\broker_info.py" />
-    <Compile Include="Nyspider\proxy.py" />
-    <Compile Include="test\seleniumTest.py">
+    <Compile Include="test.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
-    <Content Include="config.ini" />
-    <Content Include="README.md" />
-    <Content Include="data\__pycache__\__init__.cpython-36.pyc" />
-    <Content Include="result\租房_urls.txt" />
+    <Folder Include="static\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="static\index.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

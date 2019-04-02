@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Asp.NetCoreWebApi.JWT
 {
-	public class AccessToken
+    public class AccessToken
 	{
 		public string Token { get; set; }
 	}

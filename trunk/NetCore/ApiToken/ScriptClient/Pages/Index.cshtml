@@ -13,7 +13,7 @@
 	</div>
 </div>
 
-<script src="/js/apiBaseService.js"></script>
+@*<script src="/js/apiBaseService.js"></script>*@
 
 
 @section Scripts{
@@ -21,13 +21,32 @@
  
 	<script>
 		var token;
-		$(function () {
-			apiBaseService.getToken("http://localhost:55749/api/OAuth", "liu", "123456");
-		})
+		//$(function () {
+		//	apiBaseService.getToken("http://localhost:55749/api/OAuth", "liu", "123456");
+		//})
+
+
+        //$("#getvalues").click(function () {
+        //    $.ajax({
+        //        url: "http://localhost:55749/api/values",
+        //        dataType: 'json',
+        //        type: 'get',
+        //        xhrFields: {
+        //            withCredentials: true
+        //        },
+        //        cache: false,
+        //        success: function (result) {
+        //            console.log(result);
+
+        //        }
+        //    });
+        //})
+
+
 
 		$("#getvalues").click(function () {
 			$.ajax({
-				url: "http://localhost:55749/api/values",
+                url: "http://fas.codechao.com/lessons?filter={%22q%22:%22%E9%9A%8F%E5%A0%82%E8%80%83%22}&range=[0,19]&sort=[%22RealName%22,%22ASC%22]",
 				dataType: 'json',
 				type: 'get',
 				xhrFields: {
