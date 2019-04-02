@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dapper;
+using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,9 +67,9 @@ namespace LC.SDK.Plugins.Excel
                             TableName = string.IsNullOrEmpty(option.TableName) ? "LC_Meta_ImportConfigs" : option.TableName,
                             Where = string.Format(" ImportType={0} and IsUpdate=1", (int)option.ImportType)
                         });
-                        var list = new List<ImportConfig>().ToArray();
-                        configList.CopyTo(list);
-                        option.BatchOption.AllowedAllColumns = list;
+                        //var list = configList.ToList();
+                        //configList.CopyTo(list);
+                        option.BatchOption.AllowedAllColumns = configList.ToArray();
                         validResult = ValidDefault(worksheet, option, configList);
                         if (validResult != null && validResult.Messages != null && validResult.Messages.Count > 0)
                         {
@@ -79,6 +81,7 @@ namespace LC.SDK.Plugins.Excel
                         {
                             return validResult;
                         }
+                        var chiefId = CreateImportChief(option, file.Name);
                         var table = worksheet.ToMappedDataTable(configList);
 
                         context = new ExcelValidContext() { Worksheet = worksheet, OperationOption = option, Table = table };
@@ -95,7 +98,13 @@ namespace LC.SDK.Plugins.Excel
                             dict.Add(item.ExcelName, item.ColumnName);
                         }
                         option.BatchOption.ColumnMapping = dict;
-                        _batchSqlOperation.InsertOrUpdate(table, option.BatchOption);
+                       
+                        if (chiefId>0)
+                        {
+                            option.BatchOption.ChiefId = chiefId;
+                            _batchSqlOperation.InsertOrUpdate(table, option.BatchOption);
+                        }
+                        
                     }
                 }
             }
@@ -120,6 +129,18 @@ namespace LC.SDK.Plugins.Excel
                 }
             }
             return clumns;
+        }
+
+        private int CreateImportChief(ExcelOperationOption option, string name)
+        {
+            var sql = string.Format("insert into LC_Meta_ImportChiefs(ExcelName,OperationResult,InsertNum,UpdateNum,Operator,OperationTime,IsUpdated) " +
+                "values('{0}','','0','0','',Getdate(),0)" +
+                "SELECT CAST(SCOPE_IDENTITY() AS INT)", name);
+            using (var con = new SqlConnection(option.BatchOption.ConnectionString))
+            {
+                var chiefId = con.ExecuteScalar(sql);
+                return (int)chiefId;
+            }
         }
     }
 }

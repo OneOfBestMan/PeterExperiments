@@ -38,11 +38,10 @@ namespace LC.SDK.Plugins.Excel
             var tbl = new DataTable();
             foreach (var firstRowCell in ws.Cells[1, 1, 1, ws.Dimension.End.Column])
             {
-
                 var columnName = hasHeaderRow ? firstRowCell.Text : string.Format("Column {0}", firstRowCell.Start.Column);
-                var mappedColumnName = configs.FirstOrDefault(a=>a.ExcelName==columnName);
+                var mappedColumnName = configs.FirstOrDefault(a=>a.ExcelName==columnName.Replace("（", "(").Replace("）", ")"));
 
-                if (!tbl.Columns.Contains(mappedColumnName.ColumnName))
+                if (mappedColumnName!=null && !tbl.Columns.Contains(mappedColumnName.ColumnName))
                 {
                     tbl.Columns.Add(mappedColumnName.ColumnName);
                 }
